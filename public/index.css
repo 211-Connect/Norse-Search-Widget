@@ -68,40 +68,6 @@ p {
   line-height: 1.6;
 }
 
-.controls {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-primary {
-  background: #3b82f6;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #2563eb;
-}
-
-.btn-secondary {
-  background: #e2e8f0;
-  color: #2d3748;
-}
-
-.btn-secondary:hover {
-  background: #cbd5e0;
-}
-
 #sw-container {
   background-color: #764ba2;
 }

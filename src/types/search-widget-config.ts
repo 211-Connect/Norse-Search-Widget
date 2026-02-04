@@ -1,4 +1,5 @@
 export type SearchWidgetConfig = {
   tenantId: string;
-  locale?: string;
+  domain: string;
+  locale: string;
 };

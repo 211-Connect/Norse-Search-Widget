@@ -60,7 +60,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
           size="sm"
           onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           onKeyDown={handleKeyDown}
-          placeholder={config.texts.queryInputPlaceholder}
+          placeholder={config?.texts?.queryInputPlaceholder || undefined}
           autoFocus
           className={styles.focusInput}
           Icon={SearchIcon}

@@ -30,8 +30,13 @@ The simplest way to use the widget is with automatic initialization:
     />
   </head>
   <body>
-    <!-- Container for the widget with tenant ID -->
-    <div id="search-widget" tid="your-tenant-id"></div>
+    <!-- Container for the widget with tenant ID, API domain, and locale -->
+    <div
+      id="search-widget"
+      tid="your-tenant-id"
+      d="https://your-api-domain.com"
+      l="en"
+    ></div>
 
     <!-- Load the widget script - it will auto-initialize -->
     <script src="https://unpkg.com/norse-search-widget/dist/widget/search-widget.umd.js"></script>
@@ -39,7 +44,7 @@ The simplest way to use the widget is with automatic initialization:
 </html>
 ```
 
-The widget will automatically detect the `tid` attribute and initialize itself.
+The widget will automatically detect the `tid` (tenant ID), `d` (domain), and `l` (locale) attributes and initialize itself. The widget will fetch the tenant configuration from the specified domain before rendering. The locale defaults to "en" if not specified.
 
 ### Customizing Styles
 

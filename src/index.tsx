@@ -8,74 +8,103 @@ import "./styles/theme.css";
 
 class SearchWidgetIndex {
   private container: HTMLElement | null = null;
-  private searchWidgetConfig: SearchWidgetConfig;
-  private tenantSearchConfig: TenantSearchConfig;
+  private tenantSearchConfig: TenantSearchConfig | null = null;
 
-  constructor(searchWidgetConfig: SearchWidgetConfig) {
-    this.searchWidgetConfig = {
-      locale: "en",
-      ...searchWidgetConfig,
-    };
+  constructor(private readonly searchWidgetConfig: SearchWidgetConfig) {}
 
-    // todo: fetch tenant config from API
-    // todo: loading state
-    if (
-      this.searchWidgetConfig.tenantId ===
-      "06f86a2b-c060-4374-8aca-3d70b280cb24"
-    ) {
-      this.tenantSearchConfig = {
-        primaryColor: "#005191",
-        borderRadius: "6px",
-        domain: "https://localhost:3000/va",
-        texts: {
-          title: "How can we help?",
-          locationInputPlaceholder: "City, state, zip, etc...",
-          noResultsFallbackText: "No results found.",
-          queryInputPlaceholder: "Food, clothing, shelter, etc...",
-        },
-      };
-    } else {
-      this.tenantSearchConfig = {
-        primaryColor: "#10b981",
-        borderRadius: "2rem",
-        domain: "https://localhost:3000",
-        texts: {
-          title: "How can we help?",
-          locationInputPlaceholder: "City, zip, etc...",
-          noResultsFallbackText: "No results found.",
-          queryInputPlaceholder: "Food, clothing, etc...",
-        },
-      };
+  private async fetchTenantConfig(): Promise<void> {
+    const { tenantId, locale, domain } = this.searchWidgetConfig;
+
+    try {
+      const response = await fetch(
+        `${domain}/api/search-config/${tenantId}/${locale}`,
+      );
+
+      if (!response.ok) {
+        const error = await response
+          .json()
+          .catch(() => ({ error: "Failed to fetch search config" }));
+        throw new Error(error.error || "Failed to fetch search config");
+      }
+
+      this.tenantSearchConfig = await response.json();
+    } catch (err) {
+      console.error("Failed to fetch tenant config:", err);
+      throw err;
     }
   }
 
-  mount(container: HTMLElement) {
+  private showLoadingSpinner() {
+    if (!this.container) {
+      return console.warn("Container is not set.");
+    }
+
+    this.container.innerHTML = `
+      <div style="display: flex; justify-content: center; align-items: center; height: 124px;">
+        <div style="
+          width: 40px;
+          height: 40px;
+          border: 4px solid #e5e7eb;
+          border-top-color: #9ca3af;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        "></div>
+      </div>
+      <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    `;
+  }
+
+  async mount(container: HTMLElement) {
     this.container = container;
     this.container.innerHTML = "";
 
-    if (this.tenantSearchConfig.primaryColor) {
-      this.container.style.setProperty(
-        "--widget-primary",
-        this.tenantSearchConfig.primaryColor,
-      );
-    }
+    try {
+      if (!this.tenantSearchConfig) {
+        this.showLoadingSpinner();
+        await this.fetchTenantConfig();
+      }
 
-    if (this.tenantSearchConfig.borderRadius) {
-      this.container.style.setProperty(
-        "--widget-radius",
-        this.tenantSearchConfig.borderRadius,
-      );
-    }
+      this.container.innerHTML = "";
 
-    render(
-      h(WidgetContext.Provider, {
-        value: { config: this.tenantSearchConfig },
-        children: h(SearchWidget, {
-          tenantId: this.searchWidgetConfig.tenantId,
+      if (!this.tenantSearchConfig) {
+        throw new Error("Tenant search config is not available");
+      }
+
+      if (this.tenantSearchConfig.primaryColor) {
+        this.container.style.setProperty(
+          "--widget-primary",
+          this.tenantSearchConfig.primaryColor,
+        );
+      }
+
+      if (this.tenantSearchConfig.borderRadius) {
+        this.container.style.setProperty(
+          "--widget-radius",
+          this.tenantSearchConfig.borderRadius,
+        );
+      }
+
+      render(
+        h(WidgetContext.Provider, {
+          value: {
+            config: this.tenantSearchConfig,
+            tenantId: this.searchWidgetConfig.tenantId,
+            domain: this.searchWidgetConfig.domain,
+            locale: this.searchWidgetConfig.locale,
+          },
+          children: h(SearchWidget, {}),
         }),
-      }),
-      this.container,
-    );
+        this.container,
+      );
+    } catch (err) {
+      // Show error state
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      this.container.innerHTML = `<div style="padding: 1rem; text-align: center; color: red;">Failed to load widget: ${errorMessage}</div>`;
+    }
   }
 
   unmount() {
@@ -92,9 +121,16 @@ if (typeof window !== "undefined") {
     const container = document.getElementById("search-widget");
     if (container) {
       const tenantId = container.getAttribute("tid");
-      if (tenantId) {
-        const widget = new SearchWidgetIndex({ tenantId });
+      const domain = container.getAttribute("d");
+      const locale = container.getAttribute("l") || "en";
+
+      if (tenantId && domain) {
+        const widget = new SearchWidgetIndex({ tenantId, domain, locale });
         widget.mount(container);
+      } else {
+        console.error(
+          "Search widget requires both 'tid' (tenant ID) and 'd' (domain) attributes",
+        );
       }
     }
   };

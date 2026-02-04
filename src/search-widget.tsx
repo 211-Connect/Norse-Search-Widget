@@ -1,12 +1,11 @@
 import { useState } from "preact/hooks";
-import { SearchWidgetConfig } from "./types/search-widget-config";
 import { useWidgetConfig } from "./context/WidgetContext";
 import { SearchModal } from "./components/SearchModal";
 import { Input } from "./components/Input";
 import { SearchIcon } from "./icons";
 import * as styles from "./search-widget.css";
 
-export const SearchWidget = ({}: SearchWidgetConfig) => {
+export const SearchWidget = () => {
   const config = useWidgetConfig();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -14,12 +13,12 @@ export const SearchWidget = ({}: SearchWidgetConfig) => {
     <>
       <div id="sw-container" className={styles.container}>
         <h2 id="sw-title" className={styles.title}>
-          {config.texts.title}
+          {config.texts?.title || "How can we help?"}
         </h2>
         <Input
           id="sw-search-input"
           size="md"
-          placeholder={config.texts.queryInputPlaceholder}
+          placeholder={config.texts?.queryInputPlaceholder || undefined}
           onClick={() => setIsModalOpen(true)}
           readOnly
           Icon={SearchIcon}
