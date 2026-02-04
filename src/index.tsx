@@ -2,7 +2,7 @@ import { render, h } from "preact";
 import { SearchWidget } from "./search-widget";
 import { SearchWidgetConfig } from "./types/search-widget-config";
 import { TenantSearchConfig } from "./types/tenant-search-config";
-import { WidgetContext } from "./context/WidgetContext";
+import { WidgetContext } from "./context/widget-context";
 
 import "./styles/theme.css";
 

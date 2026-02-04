@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
-import { useWidgetConfig } from "./context/WidgetContext";
-import { SearchModal } from "./components/SearchModal";
-import { Input } from "./components/Input";
+import { useWidgetConfig } from "./context/widget-context";
+import { SearchModal } from "./components/search-modal/search-modal";
+import { Input } from "./components/input/input";
 import { SearchIcon } from "./icons";
 import * as styles from "./search-widget.css";
 

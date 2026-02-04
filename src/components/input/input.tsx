@@ -1,6 +1,6 @@
 import { ComponentType } from "preact";
-import { IconProps } from "../icons";
-import * as styles from "./Input.css";
+import { IconProps } from "../../icons";
+import * as styles from "./input.css";
 
 interface InputProps {
   id?: string;

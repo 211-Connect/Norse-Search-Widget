@@ -1,5 +1,5 @@
-import * as styles from "./Button.css";
-import { IconProps } from "../icons";
+import * as styles from "./button.css";
+import { IconProps } from "../../icons";
 import { ComponentChildren, ComponentType } from "preact";
 
 type ButtonProps = {

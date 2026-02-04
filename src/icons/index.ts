@@ -1,5 +1,5 @@
-export { SearchIcon } from "./SearchIcon";
-export { PlaceIcon } from "./PlaceIcon";
-export { ChevronLeftIcon } from "./ChevronLeftIcon";
+export { SearchIcon } from "./search-icon";
+export { PlaceIcon } from "./place-icon";
+export { ChevronLeftIcon } from "./chevron-left-icon";
 export type { IconProps } from "./types";
 export type IconName = "search" | "place" | "chevronLeft";

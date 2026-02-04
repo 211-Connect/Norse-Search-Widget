@@ -1,9 +1,9 @@
 import { useState } from "preact/hooks";
-import { useWidgetConfig } from "../context/WidgetContext";
-import { Input } from "./Input";
-import { Button } from "./Button";
-import { ChevronLeftIcon, SearchIcon } from "../icons";
-import * as styles from "./SearchModal.css";
+import { useWidgetConfig } from "../../context/widget-context";
+import { Input } from "../input/input";
+import { Button } from "../button/button";
+import { ChevronLeftIcon, SearchIcon } from "../../icons";
+import * as styles from "./search-modal.css";
 
 type SearchModalProps = {
   onClose: () => void;
