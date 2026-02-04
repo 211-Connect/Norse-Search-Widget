@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Widget Demo</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="search-widget.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Search Widget Demo</h1>
+
+      <p>
+        A standalone, framework-agnostic search widget built with Preact and
+        Vite
+      </p>
+
+      <div id="search-widget"></div>
+
+      <div class="controls">
+        <button class="btn-primary" onclick="changeTenant('default')">
+          TENANT 1
+        </button>
+        <button
+          class="btn-primary"
+          onclick="changeTenant('06f86a2b-c060-4374-8aca-3d70b280cb24')"
+          style="background: #3b82f6"
+        >
+          TENANT 2
+        </button>
+      </div>
+
+      <div class="config">
+        <h2>Configuration</h2>
+        <pre><code>&lt;!-- Import widget styles --&gt;
+&lt;link rel="stylesheet" href="./search-widget.css" /&gt;
+
+&lt;!-- Widget container with tenant ID --&gt;
+&lt;div id="search-widget" tid="{{ tenant_id }}"&gt;&lt;/div&gt;
+
+&lt;!-- Load widget script --&gt;
+&lt;script src="./search-widget.umd.js"&gt;&lt;/script&gt;
+
+&lt;!-- Optional: Override styles using widget IDs --&gt;
+&lt;style&gt;
+  #sw-container {
+    background-color: #764ba2 !important;
+  }
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- Set tenant ID before loading widget -->
+    <script>
+      // Get tenant ID from localStorage or use default
+      const savedTenantId = localStorage.getItem("tenantId") || "default";
+      document
+        .getElementById("search-widget")
+        .setAttribute("tid", savedTenantId);
+    </script>
+
+    <!-- Load the widget -->
+    <script src="./search-widget.umd.js"></script>
+    <script>
+      function changeTenant(tenantId) {
+        localStorage.setItem("tenantId", tenantId);
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
