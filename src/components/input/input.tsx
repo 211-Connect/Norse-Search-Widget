@@ -7,11 +7,9 @@ interface InputProps {
   value?: string;
   placeholder?: string;
   onClick?: () => void;
-  onInput?: (e: Event) => void;
-  onKeyDown?: (e: KeyboardEvent) => void;
+  onInput?: (value: string) => void;
   readOnly?: boolean;
   autoFocus?: boolean;
-  className?: string;
   Icon?: ComponentType<IconProps>;
   size?: "sm" | "md" | "lg";
 }
@@ -22,10 +20,8 @@ export const Input = ({
   placeholder,
   onClick,
   onInput,
-  onKeyDown,
   readOnly,
   autoFocus,
-  className = "",
   Icon,
   size = "md",
 }: InputProps) => {
@@ -45,11 +41,12 @@ export const Input = ({
         value={value}
         placeholder={placeholder}
         onClick={onClick}
-        onInput={onInput}
-        onKeyDown={onKeyDown}
+        onInput={(e) =>
+          onInput && onInput((e.target as HTMLInputElement).value)
+        }
         readOnly={readOnly}
         autoFocus={autoFocus}
-        className={`${styles.input} ${styles.inputSize[size]} ${paddingClass} ${className}`}
+        className={`${styles.input} ${styles.inputSize[size]} ${paddingClass}`}
       />
     </div>
   );

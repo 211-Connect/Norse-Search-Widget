@@ -14,14 +14,14 @@ export const ChevronLeftIcon = ({
     className={className}
     style={{ color }}
     fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
+    viewBox="0 0 16 16"
   >
     <path
+      d="M10 12L6 8L10 4"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={strokeWidth}
-      d="M15 19l-7-7 7-7"
     />
   </svg>
 );

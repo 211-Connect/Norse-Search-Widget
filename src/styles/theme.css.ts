@@ -2,8 +2,24 @@ import { createGlobalTheme, createThemeContract } from "@vanilla-extract/css";
 
 export const vars = createThemeContract({
   color: {
+    /**
+     * @deprecated DO NOT USE - Use CSS variable "var(--widget-primary)" instead.
+     *
+     * This value is compiled at build-time by Vanilla Extract and cannot be
+     * dynamically changed at runtime. Since this widget needs to support
+     * runtime theming (users can customize colors), always use the CSS variable
+     * "var(--widget-primary)" directly in your styles instead of vars.color.primary.
+     *
+     * @example
+     * // ❌ Wrong - compiled at build time, cannot change
+     * color: vars.color.primary
+     *
+     * // ✅ Correct - runtime CSS variable
+     * color: "var(--widget-primary)"
+     */
     primary: null,
     white: null,
+    black: null,
     gray: {
       100: null,
       200: null,
@@ -11,6 +27,22 @@ export const vars = createThemeContract({
     },
   },
   borderRadius: {
+    /**
+     * @deprecated DO NOT USE - Use CSS variable "var(--widget-radius)" instead.
+     *
+     * This value is compiled at build-time by Vanilla Extract and cannot be
+     * dynamically changed at runtime. Since this widget needs to support
+     * runtime theming (users can customize border radius), always use the CSS
+     * variable "var(--widget-radius)" directly in your styles instead of
+     * vars.borderRadius.widget.
+     *
+     * @example
+     * // ❌ Wrong - compiled at build time, cannot change
+     * borderRadius: vars.borderRadius.widget
+     *
+     * // ✅ Correct - runtime CSS variable
+     * borderRadius: "var(--widget-radius)"
+     */
     widget: null,
   },
   spacing: {
@@ -50,6 +82,7 @@ export const defaultTheme = createGlobalTheme(":root", vars, {
   color: {
     primary: "var(--widget-primary, #3b82f6)",
     white: "#ffffff",
+    black: "#000000",
     gray: {
       100: "#f3f4f6",
       200: "#e5e7eb",

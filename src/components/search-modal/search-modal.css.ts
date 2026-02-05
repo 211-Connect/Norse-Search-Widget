@@ -6,34 +6,31 @@ export const overlay = style({
   inset: 0,
   zIndex: 50,
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "center",
   width: "100vw",
   height: "100vh",
   backgroundColor: vars.color.white,
   top: 0,
   left: 0,
+  padding: "1rem",
+  "@media": {
+    "(min-height: 1024px)": {
+      padding: "8rem 1rem",
+    },
+  },
 });
 
 export const content = style({
   display: "flex",
   width: "100%",
-  maxWidth: "36rem", // 576px
+  maxWidth: "24rem", // 384px
   flexDirection: "column",
   gap: vars.spacing.md,
-  padding: vars.spacing.md,
 });
 
 export const buttonRow = style({
   display: "flex",
   justifyContent: "space-between",
   gap: vars.spacing.sm,
-});
-
-export const focusInput = style({
-  border: `1px solid ${vars.color.gray[300]}`,
-  transition: vars.transition.colors,
-  ":focus": {
-    borderColor: "var(--widget-primary)",
-  },
 });
