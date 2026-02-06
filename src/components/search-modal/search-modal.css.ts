@@ -25,6 +25,7 @@ export const content = style({
   display: "flex",
   width: "100%",
   maxWidth: "24rem", // 384px
+  maxHeight: "100%",
   flexDirection: "column",
   gap: vars.spacing.md,
 });

@@ -1,4 +1,4 @@
-import { ComponentType } from "preact";
+import { ComponentType, Ref } from "preact";
 import { IconProps } from "../../icons";
 import * as styles from "./input.css";
 
@@ -6,10 +6,13 @@ interface InputProps {
   id?: string;
   value?: string;
   placeholder?: string;
+  inputRef?: Ref<HTMLInputElement>;
   onClick?: () => void;
   onInput?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  autofocus?: boolean;
   readOnly?: boolean;
-  autoFocus?: boolean;
   Icon?: ComponentType<IconProps>;
   size?: "sm" | "md" | "lg";
 }
@@ -18,10 +21,13 @@ export const Input = ({
   id,
   value,
   placeholder,
+  inputRef,
   onClick,
   onInput,
+  onFocus,
+  onBlur,
+  autofocus,
   readOnly,
-  autoFocus,
   Icon,
   size = "md",
 }: InputProps) => {
@@ -37,6 +43,7 @@ export const Input = ({
 
       <input
         id={id}
+        ref={inputRef}
         type="text"
         value={value}
         placeholder={placeholder}
@@ -44,8 +51,10 @@ export const Input = ({
         onInput={(e) =>
           onInput && onInput((e.target as HTMLInputElement).value)
         }
+        onFocus={onFocus}
+        onBlur={onBlur}
+        autoFocus={autofocus}
         readOnly={readOnly}
-        autoFocus={autoFocus}
         className={`${styles.input} ${styles.inputSize[size]} ${paddingClass}`}
       />
     </div>

@@ -9,6 +9,10 @@ export const base = style({
   border: "1px solid var(--widget-primary)",
   display: "inline-flex",
   alignItems: "center",
+  ":disabled": {
+    opacity: 0.5,
+    cursor: "not-allowed",
+  },
 });
 
 export const iconWrapper = style({
@@ -45,14 +49,14 @@ export const variant = styleVariants({
   primary: {
     backgroundColor: "var(--widget-primary)",
     color: vars.color.white,
-    ":hover": {
+    ":hover:not(:disabled)": {
       opacity: 0.9,
     },
   },
   secondary: {
     backgroundColor: vars.color.white,
     color: "var(--widget-primary)",
-    ":hover": {
+    ":hover:not(:disabled)": {
       backgroundColor: vars.color.gray[100],
     },
   },

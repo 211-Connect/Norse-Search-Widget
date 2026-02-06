@@ -10,6 +10,7 @@ type ButtonProps = {
   Icon?: ComponentType<IconProps>;
   iconPosition?: "left" | "right";
   id?: string;
+  disabled?: boolean;
   children?: ComponentChildren;
 };
 
@@ -21,6 +22,7 @@ export const Button = ({
   Icon,
   iconPosition = "left",
   children,
+  disabled,
   id,
 }: ButtonProps) => {
   const iconColor = variant === "primary" ? "white" : "var(--widget-primary)";
@@ -30,6 +32,7 @@ export const Button = ({
       id={id}
       onClick={onClick}
       className={`${styles.base} ${styles.size[size]} ${styles.variant[variant]} ${className}`}
+      disabled={disabled}
     >
       {Icon && iconPosition === "left" && (
         <div className={styles.iconWrapper} id={`${id}-icon-left`}>

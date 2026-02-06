@@ -1,4 +1,4 @@
-export type TenantSearchConfig = {
+export type SearchCmsConfig = {
   primaryColor: string;
   borderRadius: string;
   domain: string;
@@ -19,7 +19,9 @@ export type TenantSearchConfig = {
   subtopics: {
     name: string;
     topicName: string;
-    queryType: string;
-    query: string;
+    queryType: "link" | "text" | "taxonomy";
+    query: string | null;
+    openInNewTab: boolean | null;
+    href: string | null;
   }[];
 };

@@ -6,6 +6,9 @@ export const container = style({
   flexDirection: "column",
   gap: vars.spacing.md,
   paddingBlock: vars.spacing.md,
+  overflowY: "auto",
+  flex: 1,
+  minHeight: 0,
 });
 
 export const group = style({
@@ -46,7 +49,6 @@ export const iconWrapper = style({
   flexShrink: 0,
   width: vars.spacing.md,
   height: vars.spacing.md,
-  x: vars.borderRadius.widget,
   color: "var(--widget-primary)",
 });
 

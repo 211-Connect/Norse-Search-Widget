@@ -4,9 +4,10 @@ import { IconProps } from "../icons/types";
 export type SearchResultItem = {
   id: string;
   text: string;
+  onClick?: () => void;
   Icon?: ComponentType<IconProps>;
   badge?: string;
-  onClick?: () => void;
+  isLoading?: boolean;
 };
 
 export type SearchResultGroup = {

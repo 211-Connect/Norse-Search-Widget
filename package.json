@@ -32,7 +32,8 @@
   "author": "211-Connect",
   "license": "MIT",
   "dependencies": {
-    "preact": "^10.28.3"
+    "preact": "^10.28.3",
+    "radash": "^12.1.1"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.3",

@@ -1,38 +1,17 @@
 import { render, h } from "preact";
 import { SearchWidget } from "./search-widget";
 import { SearchWidgetConfig } from "./types/search-widget-config";
-import { TenantSearchConfig } from "./types/tenant-search-config";
-import { WidgetContext } from "./context/widget-context";
+import { SearchCmsConfig } from "./types/search-cms-config";
+import { ConfigContext } from "./context/config-context";
+import { fetchSearchCmsConfig } from "./services/fetch-search-cms-config";
 
 import "./styles/theme.css";
 
 class SearchWidgetIndex {
   private container: HTMLElement | null = null;
-  private tenantSearchConfig: TenantSearchConfig | null = null;
+  private searchCmsConfig: SearchCmsConfig | null = null;
 
   constructor(private readonly searchWidgetConfig: SearchWidgetConfig) {}
-
-  private async fetchTenantConfig(): Promise<void> {
-    const { tenantId, locale, domain } = this.searchWidgetConfig;
-
-    try {
-      const response = await fetch(
-        `${domain}/api/search-config/${tenantId}/${locale}`,
-      );
-
-      if (!response.ok) {
-        const error = await response
-          .json()
-          .catch(() => ({ error: "Failed to fetch search config" }));
-        throw new Error(error.error || "Failed to fetch search config");
-      }
-
-      this.tenantSearchConfig = await response.json();
-    } catch (err) {
-      console.error("Failed to fetch tenant config:", err);
-      throw err;
-    }
-  }
 
   private showLoadingSpinner() {
     if (!this.container) {
@@ -63,35 +42,38 @@ class SearchWidgetIndex {
     this.container.innerHTML = "";
 
     try {
-      if (!this.tenantSearchConfig) {
+      if (!this.searchCmsConfig) {
         this.showLoadingSpinner();
-        await this.fetchTenantConfig();
+        const searchCmsConfig = await fetchSearchCmsConfig(
+          this.searchWidgetConfig,
+        );
+        this.searchCmsConfig = searchCmsConfig;
       }
 
       this.container.innerHTML = "";
 
-      if (!this.tenantSearchConfig) {
+      if (!this.searchCmsConfig) {
         throw new Error("Tenant search config is not available");
       }
 
-      if (this.tenantSearchConfig.primaryColor) {
+      if (this.searchCmsConfig.primaryColor) {
         this.container.style.setProperty(
           "--widget-primary",
-          this.tenantSearchConfig.primaryColor,
+          this.searchCmsConfig.primaryColor,
         );
       }
 
-      if (this.tenantSearchConfig.borderRadius) {
+      if (this.searchCmsConfig.borderRadius) {
         this.container.style.setProperty(
           "--widget-radius",
-          this.tenantSearchConfig.borderRadius,
+          this.searchCmsConfig.borderRadius,
         );
       }
 
       render(
-        h(WidgetContext.Provider, {
+        h(ConfigContext.Provider, {
           value: {
-            config: this.tenantSearchConfig,
+            cmsConfig: this.searchCmsConfig,
             tenantId: this.searchWidgetConfig.tenantId,
             domain: this.searchWidgetConfig.domain,
             locale: this.searchWidgetConfig.locale,

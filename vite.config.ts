@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import preact from "@preact/preset-vite";
 import { resolve } from "path";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
@@ -23,31 +23,38 @@ const copyPublicPlugin = {
   },
 };
 
-export default defineConfig({
-  plugins: [preact(), vanillaExtractPlugin(), copyPublicPlugin],
-  build: {
-    lib: {
-      entry: resolve(__dirname, "src/index.tsx"),
-      name: "SearchWidget",
-      formats: ["umd", "es"],
-      fileName: (format) => `search-widget.${format}.js`,
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+
+  return {
+    plugins: [preact(), vanillaExtractPlugin(), copyPublicPlugin],
+    define: {
+      __API_URL__: JSON.stringify(env.API_URL || "https://api.c211.io"),
     },
-    outDir: resolve(__dirname, "dist"),
-    emptyOutDir: true,
-    minify: "esbuild",
-    cssMinify: "esbuild",
-    rollupOptions: {
-      external: [],
-      output: {
-        exports: "default",
+    build: {
+      lib: {
+        entry: resolve(__dirname, "src/index.tsx"),
+        name: "SearchWidget",
+        formats: ["umd", "es"],
+        fileName: (format) => `search-widget.${format}.js`,
+      },
+      outDir: resolve(__dirname, "dist"),
+      emptyOutDir: true,
+      minify: "esbuild",
+      cssMinify: "esbuild",
+      rollupOptions: {
+        external: [],
+        output: {
+          exports: "default",
+        },
+      },
+      sourcemap: true,
+    },
+    resolve: {
+      alias: {
+        react: "preact/compat",
+        "react-dom": "preact/compat",
       },
     },
-    sourcemap: true,
-  },
-  resolve: {
-    alias: {
-      react: "preact/compat",
-      "react-dom": "preact/compat",
-    },
-  },
+  };
 });

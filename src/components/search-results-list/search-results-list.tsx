@@ -1,4 +1,4 @@
-import { useSearchResults } from "../../context/search-results-context";
+import { useSearchContext } from "../../context/search-context";
 import { SearchResultItem } from "../../types/search-results";
 import * as styles from "./search-results-list.css";
 
@@ -19,7 +19,7 @@ const SearchResultListItem = ({ item }: SearchResultListItemProps) => (
 );
 
 export const SearchResultsList = () => {
-  const { results } = useSearchResults();
+  const { results } = useSearchContext();
 
   const hasResults =
     (results.groups && results.groups.length > 0) ||
@@ -30,7 +30,7 @@ export const SearchResultsList = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div id="search-results-list" className={styles.container}>
       {results.groups?.map((group) => (
         <div key={group.id} className={styles.group}>
           <h3 className={styles.groupTitle}>{group.title}</h3>
