@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { useCmsConfig } from "../../context/config-context";
+import { useCmsConfig, useConfigContext } from "../../context/config-context";
 import { Input } from "../../ui/input/input";
 import { Button } from "../../ui/button/button";
 import { SearchResultsList } from "../search-results-list/search-results-list";
@@ -16,6 +16,7 @@ import {
   useInitializeDistanceFromConfig,
 } from "../../hooks";
 import { isGeolocationAvailable } from "../../services/get-user-location";
+import { getTextTranslations, getOtherTranslations } from "../../locales";
 
 import * as styles from "./search-modal.css";
 
@@ -25,7 +26,11 @@ type SearchModalProps = {
 
 export const SearchModal = ({ onClose }: SearchModalProps) => {
   const config = useCmsConfig();
+  const { locale } = useConfigContext();
   const [locationError, setLocationError] = useState<string | null>(null);
+
+  const fallbackTexts = getTextTranslations(locale);
+  const otherTexts = getOtherTranslations(locale);
 
   const {
     queryInputValue,
@@ -54,7 +59,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
             variant="secondary"
             Icon={ChevronLeftIcon}
           >
-            Back
+            {otherTexts.back}
           </Button>
           <SearchButton onClose={onClose} />
         </div>
@@ -67,7 +72,10 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
           onInput={setQueryInputValue}
           onFocus={() => setFocusedInput("query")}
           onClear={() => setQueryInputValue("")}
-          placeholder={config?.texts?.queryInputPlaceholder || undefined}
+          placeholder={
+            config?.texts?.queryInputPlaceholder ??
+            fallbackTexts?.queryInputPlaceholder
+          }
           Icon={SearchIcon}
         />
 
@@ -81,7 +89,10 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
             setLocationInputValue("");
             setLocationCoords(null);
           }}
-          placeholder={config.texts?.locationInputPlaceholder || undefined}
+          placeholder={
+            config.texts?.locationInputPlaceholder ??
+            fallbackTexts?.locationInputPlaceholder
+          }
           Icon={PlaceIcon}
         />
 

@@ -1,11 +1,13 @@
 import { ComponentType, Ref } from "preact";
 import { IconProps, XIcon } from "../../icons";
+import { useConfigContext } from "../../context/config-context";
+import { getOtherTranslations } from "../../locales";
 import * as styles from "./input.css";
 
 interface InputProps {
   id?: string;
   value?: string;
-  placeholder?: string;
+  placeholder?: string | null;
   inputRef?: Ref<HTMLInputElement>;
   onClick?: () => void;
   onInput?: (value: string) => void;
@@ -33,6 +35,8 @@ export const Input = ({
   Icon,
   size = "md",
 }: InputProps) => {
+  const { locale } = useConfigContext();
+  const otherTexts = getOtherTranslations(locale);
   const paddingClass = Icon ? styles.inputWithIcon : styles.inputWithoutIcon;
   const paddingRightClass = onClear && value ? styles.inputWithClear : "";
 
@@ -49,7 +53,7 @@ export const Input = ({
         ref={inputRef}
         type="text"
         value={value}
-        placeholder={placeholder}
+        placeholder={placeholder || undefined}
         onClick={onClick}
         onInput={(e) =>
           onInput && onInput((e.target as HTMLInputElement).value)
@@ -67,7 +71,7 @@ export const Input = ({
           type="button"
           onClick={onClear}
           className={styles.clearButton}
-          aria-label="Clear input"
+          aria-label={otherTexts.clearInput}
         >
           <XIcon color="var(--widget-primary)" size={16} />
         </button>

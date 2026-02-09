@@ -4,6 +4,7 @@ import { SearchWidgetConfig } from "./types/search-widget-config";
 import { SearchCmsConfig } from "./types/search-cms-config";
 import { ConfigContext } from "./context/config-context";
 import { fetchSearchCmsConfig } from "./services/fetch-search-cms-config";
+import { getOtherTranslations } from "./locales";
 
 import "./styles/theme.css";
 
@@ -84,8 +85,10 @@ class SearchWidgetIndex {
       );
     } catch (err) {
       // Show error state
-      const errorMessage = err instanceof Error ? err.message : "Unknown error";
-      this.container.innerHTML = `<div style="padding: 1rem; text-align: center; color: red;">Failed to load widget: ${errorMessage}</div>`;
+      const otherTexts = getOtherTranslations(this.searchWidgetConfig.locale);
+      const errorMessage =
+        err instanceof Error ? err.message : otherTexts.unknownError;
+      this.container.innerHTML = `<div style="padding: 1rem; text-align: center; color: red;">${otherTexts.failedToLoadWidget}: ${errorMessage}</div>`;
     }
   }
 

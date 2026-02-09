@@ -1,7 +1,7 @@
 import { Button } from "../../ui/button/button";
 import { useSearchContext } from "../../context/search-context";
 import { useCmsConfig, useConfigContext } from "../../context/config-context";
-import { getEverywhereLabel } from "../../locales/utils";
+import { getEverywhereLabel, getOtherTranslations } from "../../locales/utils";
 
 interface SearchButtonProps {
   onClose: () => void;
@@ -10,6 +10,7 @@ interface SearchButtonProps {
 export const SearchButton = ({ onClose }: SearchButtonProps) => {
   const config = useCmsConfig();
   const { locale } = useConfigContext();
+  const otherTexts = getOtherTranslations(locale);
   const {
     queryConfig,
     queryInputValue,
@@ -69,7 +70,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
       variant="primary"
       disabled={!queryInputValue.trim()}
     >
-      Search
+      {otherTexts.search}
     </Button>
   );
 };

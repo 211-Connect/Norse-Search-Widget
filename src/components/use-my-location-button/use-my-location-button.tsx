@@ -1,9 +1,10 @@
 import { useState } from "preact/hooks";
 import { Button } from "../../ui/button/button";
 import { TargetIcon, LoaderIcon } from "../../icons";
-import { useCmsConfig } from "../../context/config-context";
+import { useCmsConfig, useConfigContext } from "../../context/config-context";
 import { useSearchContext } from "../../context/search-context";
 import { getUserLocation } from "../../services/get-user-location";
+import { getOtherTranslations } from "../../locales";
 
 type UseMyLocationButtonProps = {
   onError: (error: string) => void;
@@ -11,6 +12,8 @@ type UseMyLocationButtonProps = {
 
 export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
   const config = useCmsConfig();
+  const { locale } = useConfigContext();
+  const otherTexts = getOtherTranslations(locale);
   const { setLocationInputValue, setLocationCoords, setFocusedInput } =
     useSearchContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +32,9 @@ export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
     } catch (error) {
       console.error("Failed to get user location:", error);
       const errorMessage =
-        error instanceof Error ? error.message : "Unable to retrieve location";
+        error instanceof Error
+          ? error.message
+          : otherTexts.unableToRetrieveLocation;
       onError(errorMessage);
     } finally {
       setIsLoading(false);
@@ -46,7 +51,7 @@ export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
       iconPosition="left"
       disabled={isLoading}
     >
-      {isLoading ? "Getting location..." : "Use My Location"}
+      {isLoading ? otherTexts.gettingLocation : otherTexts.useMyLocation}
     </Button>
   );
 };

@@ -1,8 +1,25 @@
-import { translations } from "./translations";
-import { DistanceTranslations, Locale } from "./types";
+import {
+  distanceTranslations,
+  textTranslations,
+  otherTranslations,
+} from "./translations";
+import {
+  DistanceTranslations,
+  TextTranslations,
+  OtherTranslations,
+  Locale,
+} from "./types";
 
 export const getTranslations = (locale: string): DistanceTranslations => {
-  return translations[locale as Locale] || translations.en;
+  return distanceTranslations[locale as Locale] || distanceTranslations.en;
+};
+
+export const getTextTranslations = (locale: string): TextTranslations => {
+  return textTranslations[locale as Locale] || textTranslations.en;
+};
+
+export const getOtherTranslations = (locale: string): OtherTranslations => {
+  return otherTranslations[locale as Locale] || otherTranslations.en;
 };
 
 export const getDistanceLabel = (distance: number, locale: string): string => {
