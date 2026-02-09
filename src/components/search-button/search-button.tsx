@@ -1,6 +1,7 @@
 import { Button } from "../button/button";
 import { useSearchContext } from "../../context/search-context";
-import { useCmsConfig } from "../../context/config-context";
+import { useCmsConfig, useConfigContext } from "../../context/config-context";
+import { getEverywhereLabel } from "../../locales/utils";
 
 interface SearchButtonProps {
   onClose: () => void;
@@ -8,6 +9,7 @@ interface SearchButtonProps {
 
 export const SearchButton = ({ onClose }: SearchButtonProps) => {
   const config = useCmsConfig();
+  const { locale } = useConfigContext();
   const {
     queryConfig,
     queryInputValue,
@@ -19,7 +21,13 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
   const handleSearch = () => {
     const queryParams = new URLSearchParams();
 
-    queryParams.set("location", locationInputValue || "Everywhere");
+    // Always use "Everywhere" in English for the query parameter
+    const everywhereLabel = getEverywhereLabel(locale);
+    const locationParam =
+      locationInputValue === everywhereLabel || !locationInputValue
+        ? "Everywhere"
+        : locationInputValue;
+    queryParams.set("location", locationParam);
     if (locationCoords) {
       queryParams.set("coords", locationCoords.join(","));
     }

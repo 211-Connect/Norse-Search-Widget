@@ -1,13 +1,15 @@
 import { useEffect } from "preact/hooks";
 import { debounce } from "radash";
 import { useSearchContext } from "../context/search-context";
-import { useCmsConfig } from "../context/config-context";
+import { useCmsConfig, useConfigContext } from "../context/config-context";
 import { EarthIcon, PlaceIcon } from "../icons";
 import { fetchMapboxLocations } from "../services/fetch-mapbox-locations";
 import { SearchResultItem } from "../types/search-results";
+import { getEverywhereLabel } from "../locales/utils";
 
 export const useFetchLocationsOnInputChange = () => {
   const config = useCmsConfig();
+  const { locale } = useConfigContext();
   const {
     setResults,
 
@@ -24,12 +26,13 @@ export const useFetchLocationsOnInputChange = () => {
       return;
     }
 
+    const everywhereLabel = getEverywhereLabel(locale);
     const everywhereItem = {
       id: "location-everywhere",
-      text: "Everywhere",
+      text: everywhereLabel,
       Icon: EarthIcon,
       onClick: () => {
-        setLocationInputValue("Everywhere");
+        setLocationInputValue(everywhereLabel);
         setLocationCoords(null);
         setFocusedInput(null);
       },
@@ -81,5 +84,5 @@ export const useFetchLocationsOnInputChange = () => {
     return () => {
       debouncedFetch.cancel();
     };
-  }, [locationInputValue, focusedInput, config.mapboxAccessToken]);
+  }, [locationInputValue, focusedInput, config.mapboxAccessToken, locale]);
 };

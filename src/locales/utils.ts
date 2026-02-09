@@ -19,3 +19,7 @@ export const getAnyDistanceLabel = (locale: string): string => {
 export const getRadiusLabel = (locale: string): string => {
   return getTranslations(locale).radius;
 };
+
+export const getEverywhereLabel = (locale: string): string => {
+  return getTranslations(locale).everywhere;
+};

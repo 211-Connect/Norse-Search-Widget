@@ -9,4 +9,5 @@ export type DistanceTranslations = {
   };
   any: string;
   radius: string;
+  everywhere: string;
 };
