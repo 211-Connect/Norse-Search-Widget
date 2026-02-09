@@ -1,5 +1,16 @@
-import { style } from "@vanilla-extract/css";
+import { style, keyframes } from "@vanilla-extract/css";
 import { vars } from "src/styles/theme.css";
+
+const slideInFade = keyframes({
+  from: {
+    opacity: 0,
+    transform: "translateY(0.5rem)",
+  },
+  to: {
+    opacity: 1,
+    transform: "translateY(0)",
+  },
+});
 
 export const container = style({
   display: "flex",
@@ -9,6 +20,7 @@ export const container = style({
   overflowY: "auto",
   flex: 1,
   minHeight: 0,
+  animation: `${slideInFade} 0.25s ease-out`,
 });
 
 export const group = style({

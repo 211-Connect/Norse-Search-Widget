@@ -1,5 +1,25 @@
-import { style } from "@vanilla-extract/css";
+import { style, keyframes } from "@vanilla-extract/css";
 import { vars } from "../../styles/theme.css";
+
+const fadeIn = keyframes({
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+});
+
+const slideUp = keyframes({
+  from: {
+    opacity: 0,
+    transform: "translateY(1rem)",
+  },
+  to: {
+    opacity: 1,
+    transform: "translateY(0)",
+  },
+});
 
 export const overlay = style({
   position: "fixed",
@@ -14,6 +34,7 @@ export const overlay = style({
   top: 0,
   left: 0,
   padding: "1rem",
+  animation: `${fadeIn} 0.2s ease-out`,
   "@media": {
     "(min-height: 1024px)": {
       padding: "8rem 1rem",
@@ -28,6 +49,7 @@ export const content = style({
   maxHeight: "100%",
   flexDirection: "column",
   gap: vars.spacing.md,
+  animation: `${slideUp} 0.3s ease-out`,
 });
 
 export const buttonRow = style({
