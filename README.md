@@ -26,7 +26,7 @@ The simplest way to use the widget is with automatic initialization:
     <!-- Import widget styles -->
     <link
       rel="stylesheet"
-      href="https://unpkg.com/norse-search-widget/dist/widget/search-widget.css"
+      href="https://search-widget.c211.io/latest/search-widget.css"
     />
   </head>
   <body>
@@ -39,7 +39,7 @@ The simplest way to use the widget is with automatic initialization:
     ></div>
 
     <!-- Load the widget script - it will auto-initialize -->
-    <script src="https://unpkg.com/norse-search-widget/dist/widget/search-widget.umd.js"></script>
+    <script src="https://search-widget.c211.io/latest/search-widget.umd.js"></script>
   </body>
 </html>
 ```
