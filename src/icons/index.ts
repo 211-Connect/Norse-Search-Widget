@@ -3,5 +3,14 @@ export { PlaceIcon } from "./place-icon";
 export { ChevronLeftIcon } from "./chevron-left-icon";
 export { EarthIcon } from "./earth-icon";
 export { TargetIcon } from "./target-icon";
+export { LoaderIcon } from "./loader-icon";
+export { XIcon } from "./x-icon";
 export type { IconProps } from "./types";
-export type IconName = "search" | "place" | "chevronLeft" | "earth" | "target";
+export type IconName =
+  | "search"
+  | "place"
+  | "chevronLeft"
+  | "earth"
+  | "target"
+  | "loader"
+  | "x";

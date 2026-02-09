@@ -4,7 +4,7 @@ import { ComponentChildren, ComponentType } from "preact";
 
 type ButtonProps = {
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "link";
+  variant?: "primary" | "secondary" | "link" | "link-white";
   size?: "sm" | "md" | "lg";
   className?: string;
   Icon?: ComponentType<IconProps>;
@@ -25,7 +25,10 @@ export const Button = ({
   disabled,
   id,
 }: ButtonProps) => {
-  const iconColor = variant === "secondary" ? "var(--widget-primary)" : "white";
+  const iconColor =
+    variant === "secondary" || variant === "link"
+      ? "var(--widget-primary)"
+      : "white";
 
   return (
     <button

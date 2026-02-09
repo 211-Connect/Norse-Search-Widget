@@ -46,7 +46,7 @@ const SearchWidgetComponent = () => {
         />
         <Button
           id="sw-add-location-button"
-          variant="link"
+          variant="link-white"
           size="sm"
           onClick={onAddLocationClick}
           Icon={TargetIcon}

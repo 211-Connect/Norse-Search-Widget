@@ -35,3 +35,9 @@ export const buttonRow = style({
   justifyContent: "space-between",
   gap: vars.spacing.sm,
 });
+
+export const locationError = style({
+  color: "red",
+  fontSize: vars.fontSize.xs,
+  margin: 0,
+});

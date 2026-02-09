@@ -1,5 +1,5 @@
 import { ComponentType, Ref } from "preact";
-import { IconProps } from "../../icons";
+import { IconProps, XIcon } from "../../icons";
 import * as styles from "./input.css";
 
 interface InputProps {
@@ -11,6 +11,7 @@ interface InputProps {
   onInput?: (value: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
+  onClear?: () => void;
   autofocus?: boolean;
   readOnly?: boolean;
   Icon?: ComponentType<IconProps>;
@@ -26,12 +27,14 @@ export const Input = ({
   onInput,
   onFocus,
   onBlur,
+  onClear,
   autofocus,
   readOnly,
   Icon,
   size = "md",
 }: InputProps) => {
   const paddingClass = Icon ? styles.inputWithIcon : styles.inputWithoutIcon;
+  const paddingRightClass = onClear && value ? styles.inputWithClear : "";
 
   return (
     <div className={styles.container}>
@@ -55,8 +58,20 @@ export const Input = ({
         onBlur={onBlur}
         autoFocus={autofocus}
         readOnly={readOnly}
-        className={`${styles.input} ${styles.inputSize[size]} ${paddingClass}`}
+        className={`${styles.input} ${styles.inputSize[size]} ${paddingClass} ${paddingRightClass}`}
       />
+
+      {onClear && value && (
+        <button
+          id={`${id}-clear`}
+          type="button"
+          onClick={onClear}
+          className={styles.clearButton}
+          aria-label="Clear input"
+        >
+          <XIcon color="var(--widget-primary)" size={16} />
+        </button>
+      )}
     </div>
   );
 };

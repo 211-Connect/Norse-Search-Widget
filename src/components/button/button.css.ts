@@ -62,9 +62,18 @@ export const variant = styleVariants({
   },
   link: {
     backgroundColor: "transparent",
+    color: "var(--widget-primary)",
+    border: "none",
+    paddingInline: 0,
+    ":hover": {
+      textDecoration: "underline",
+    },
+  },
+  "link-white": {
+    backgroundColor: "transparent",
     color: vars.color.white,
     border: "none",
-    padding: 0,
+    paddingInline: 0,
     ":hover": {
       textDecoration: "underline",
     },

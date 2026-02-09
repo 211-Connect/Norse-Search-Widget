@@ -51,3 +51,26 @@ export const inputWithIcon = style({
 });
 
 export const inputWithoutIcon = style({});
+
+export const inputWithClear = style({
+  paddingRight: "2.5rem",
+});
+
+export const clearButton = style({
+  position: "absolute",
+  right: vars.spacing.sm,
+  top: "50%",
+  transform: "translateY(-50%)",
+  background: "none",
+  border: "none",
+  cursor: "pointer",
+  padding: vars.spacing["2xs"],
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  opacity: 0.5,
+  transition: vars.transition.colors,
+  ":hover": {
+    opacity: 1,
+  },
+});
