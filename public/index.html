@@ -19,23 +19,25 @@
 
       <div
         id="search-widget"
-        tid="cd925344-598b-4794-95f3-9a3384e4fb80"
+        tid="b7ba6ff5-4add-4fb8-a437-dcb0ce27542f"
         d="http://localhost:3000"
         l="en"
       ></div>
 
       <div class="config">
         <h2>Configuration</h2>
-        <pre><code>&lt;!-- Import widget styles --&gt;
+        <pre><code>
 &lt;link rel="stylesheet" href="./search-widget.css" /&gt;
 
-&lt;!-- Widget container with tenant ID, domain, and locale --&gt;
-&lt;div id="search-widget" tid="{{ tenant_id }}" d="{{ api_domain }}" l="{{ locale }}"&gt;&lt;/div&gt;
+&lt;div
+  id="search-widget"
+  tid="{{ tenant_id }}"
+  d="{{ api_domain }}"
+  l="{{ locale }}"
+&gt;&lt;/div&gt;
 
-&lt;!-- Load widget script --&gt;
 &lt;script src="./search-widget.umd.js"&gt;&lt;/script&gt;
 
-&lt;!-- Optional: Override styles using widget IDs --&gt;
 &lt;style&gt;
   #sw-container {
     background-color: #764ba2 !important;
