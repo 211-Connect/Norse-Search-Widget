@@ -41,3 +41,11 @@ export const locationError = style({
   fontSize: vars.fontSize.xs,
   margin: 0,
 });
+
+export const locationRow = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: vars.spacing.sm,
+  width: "100%",
+});

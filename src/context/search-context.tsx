@@ -29,6 +29,9 @@ type SearchContextType = {
 
   locationCoords: [number, number] | null;
   setLocationCoords: Dispatch<StateUpdater<[number, number] | null>>;
+
+  distance: number | null;
+  setDistance: Dispatch<StateUpdater<number | null>>;
 };
 
 const SearchContext = createContext<SearchContextType | null>(null);
@@ -57,6 +60,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
   const [locationCoords, setLocationCoords] = useState<[number, number] | null>(
     null,
   );
+  const [distance, setDistance] = useState<number | null>(null);
 
   const value = useMemo(
     () => ({
@@ -77,6 +81,9 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
 
       locationCoords,
       setLocationCoords,
+
+      distance,
+      setDistance,
     }),
     [
       results,
@@ -85,6 +92,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
       queryInputValue,
       locationInputValue,
       locationCoords,
+      distance,
     ],
   );
 

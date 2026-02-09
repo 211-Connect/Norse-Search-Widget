@@ -10,7 +10,7 @@ export type SearchCmsConfig = {
   };
   resultsLimit: number;
   radiusSelectValues: number[];
-  defaultRadius: number;
+  defaultRadius?: number | null;
   suggestions: {
     value: string;
     taxonomies: string;

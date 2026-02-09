@@ -8,5 +8,5 @@ export type IconProps = {
 
 export const defaultIconProps: IconProps = {
   size: 20,
-  strokeWidth: 2,
+  strokeWidth: 1,
 };
