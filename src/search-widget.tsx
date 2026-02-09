@@ -1,8 +1,8 @@
 import { useRef, useState } from "preact/hooks";
 import { useCmsConfig } from "./context/config-context";
 import { SearchModal } from "./components/search-modal/search-modal";
-import { Input } from "./components/input/input";
-import { Button } from "./components/button/button";
+import { Input } from "./ui/input/input";
+import { Button } from "./ui/button/button";
 import { SearchIcon, TargetIcon } from "./icons";
 import * as styles from "./search-widget.css";
 import { SearchProvider, useSearchContext } from "./context/search-context";

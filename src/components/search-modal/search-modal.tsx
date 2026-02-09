@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { useCmsConfig } from "../../context/config-context";
-import { Input } from "../input/input";
-import { Button } from "../button/button";
+import { Input } from "../../ui/input/input";
+import { Button } from "../../ui/button/button";
 import { SearchResultsList } from "../search-results-list/search-results-list";
 import { UseMyLocationButton } from "../use-my-location-button/use-my-location-button";
 import { DistanceSelect } from "../distance-select/distance-select";

@@ -1,4 +1,4 @@
-import { Button } from "../button/button";
+import { Button } from "../../ui/button/button";
 import { useSearchContext } from "../../context/search-context";
 import { useCmsConfig, useConfigContext } from "../../context/config-context";
 import { getEverywhereLabel } from "../../locales/utils";

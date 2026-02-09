@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { Button } from "../button/button";
+import { Button } from "../../ui/button/button";
 import { TargetIcon, LoaderIcon } from "../../icons";
 import { useCmsConfig } from "../../context/config-context";
 import { useSearchContext } from "../../context/search-context";

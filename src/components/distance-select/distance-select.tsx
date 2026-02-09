@@ -1,4 +1,4 @@
-import { Select } from "../select/select";
+import { Select } from "../../ui/select/select";
 import { useCmsConfig } from "../../context/config-context";
 import { useConfigContext } from "../../context/config-context";
 import { useSearchContext } from "../../context/search-context";
