@@ -2,14 +2,16 @@ import { useRef, useState } from "preact/hooks";
 import { useCmsConfig } from "./context/config-context";
 import { SearchModal } from "./components/search-modal/search-modal";
 import { Input } from "./components/input/input";
-import { SearchIcon } from "./icons";
+import { Button } from "./components/button/button";
+import { SearchIcon, TargetIcon } from "./icons";
 import * as styles from "./search-widget.css";
 import { SearchProvider, useSearchContext } from "./context/search-context";
 
 const SearchWidgetComponent = () => {
   const config = useCmsConfig();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { setFocusedInput, queryInputValue } = useSearchContext();
+  const { setFocusedInput, queryInputValue, locationInputValue } =
+    useSearchContext();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onQueryInputClick = () => {
@@ -18,6 +20,11 @@ const SearchWidgetComponent = () => {
     // 2. allow input in modal to be auto-focused
     inputRef.current?.blur();
     setFocusedInput("query");
+    setIsModalOpen(true);
+  };
+
+  const onAddLocationClick = () => {
+    setFocusedInput("location");
     setIsModalOpen(true);
   };
 
@@ -37,6 +44,16 @@ const SearchWidgetComponent = () => {
           readOnly
           Icon={SearchIcon}
         />
+        <Button
+          id="sw-add-location-button"
+          variant="link"
+          size="sm"
+          onClick={onAddLocationClick}
+          Icon={TargetIcon}
+          iconPosition="left"
+        >
+          {locationInputValue || "Add My Location"}
+        </Button>
       </div>
 
       {isModalOpen && <SearchModal onClose={() => setIsModalOpen(false)} />}

@@ -20,6 +20,7 @@ export const vars = createThemeContract({
     primary: null,
     white: null,
     black: null,
+    text: null,
     gray: {
       100: null,
       200: null,
@@ -83,6 +84,7 @@ export const defaultTheme = createGlobalTheme(":root", vars, {
     primary: "var(--widget-primary, #3b82f6)",
     white: "#ffffff",
     black: "#000000",
+    text: "#333333",
     gray: {
       100: "#f3f4f6",
       200: "#e5e7eb",

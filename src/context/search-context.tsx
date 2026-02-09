@@ -26,6 +26,9 @@ type SearchContextType = {
 
   locationInputValue: string;
   setLocationInputValue: Dispatch<StateUpdater<string>>;
+
+  locationCoords: [number, number] | null;
+  setLocationCoords: Dispatch<StateUpdater<[number, number] | null>>;
 };
 
 const SearchContext = createContext<SearchContextType | null>(null);
@@ -51,6 +54,9 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
   const [queryConfig, setQueryConfig] = useState<QueryConfig | null>(null);
   const [queryInputValue, setQueryInputValue] = useState("");
   const [locationInputValue, setLocationInputValue] = useState("");
+  const [locationCoords, setLocationCoords] = useState<[number, number] | null>(
+    null,
+  );
 
   const value = useMemo(
     () => ({
@@ -68,8 +74,18 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
 
       locationInputValue,
       setLocationInputValue,
+
+      locationCoords,
+      setLocationCoords,
     }),
-    [results, focusedInput, queryConfig, queryInputValue, locationInputValue],
+    [
+      results,
+      focusedInput,
+      queryConfig,
+      queryInputValue,
+      locationInputValue,
+      locationCoords,
+    ],
   );
 
   return (

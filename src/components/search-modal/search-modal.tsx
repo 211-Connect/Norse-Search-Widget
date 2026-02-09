@@ -8,6 +8,7 @@ import {
   useEmptyResultsOnBlurInput,
   useFetchTaxonomiesOnInputChange,
   useUpdateResultsOnInputChange,
+  useFetchLocationsOnInputChange,
 } from "../../hooks";
 
 import * as styles from "./search-modal.css";
@@ -28,16 +29,22 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
 
     locationInputValue,
     setLocationInputValue,
+
+    locationCoords,
   } = useSearchContext();
 
   useEmptyResultsOnBlurInput();
   useUpdateResultsOnInputChange();
   useFetchTaxonomiesOnInputChange();
+  useFetchLocationsOnInputChange();
 
   const handleSearch = () => {
     const queryParams = new URLSearchParams();
-    queryParams.set("location", "Everywhere");
-    // queryParams.set("coords", "");
+
+    queryParams.set("location", locationInputValue || "Everywhere");
+    if (locationCoords) {
+      queryParams.set("coords", locationCoords.join(","));
+    }
     // queryParams.set("distance", "0");
 
     if (!queryConfig) {

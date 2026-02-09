@@ -24,4 +24,5 @@ export type SearchCmsConfig = {
     openInNewTab: boolean | null;
     href: string | null;
   }[];
+  mapboxAccessToken: string;
 };

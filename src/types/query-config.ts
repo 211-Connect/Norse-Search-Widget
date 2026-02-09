@@ -1,4 +1,8 @@
-export type QueryConfig =
+export type QueryConfig = {
+  location?: string | null;
+  coords?: string | null;
+  distance?: number | null;
+} & (
   | {
       href: string;
       openInNewTab: boolean;
@@ -7,4 +11,5 @@ export type QueryConfig =
       query: string;
       queryLabel: string;
       queryType: "suggestion" | "topic" | "taxonomy" | "text";
-    };
+    }
+);

@@ -17,6 +17,7 @@ export const iconWrapper = style({
 export const input = style({
   width: "100%",
   backgroundColor: vars.color.white,
+  color: vars.color.text,
   cursor: "pointer",
   border: `1px solid ${vars.color.gray[300]}`,
   borderRadius: "var(--widget-radius)",

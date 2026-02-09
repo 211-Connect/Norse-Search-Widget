@@ -60,4 +60,13 @@ export const variant = styleVariants({
       backgroundColor: vars.color.gray[100],
     },
   },
+  link: {
+    backgroundColor: "transparent",
+    color: vars.color.white,
+    border: "none",
+    padding: 0,
+    ":hover": {
+      textDecoration: "underline",
+    },
+  },
 });
