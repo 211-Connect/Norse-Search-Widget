@@ -53,7 +53,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
       queryParams.set("query_label", queryConfig.queryLabel);
       queryParams.set("query_type", queryConfig.queryType);
       window.open(
-        `https://${config.domain}?${queryParams.toString()}`,
+        `https://${config.domain}/search?${queryParams.toString()}`,
         "_blank",
       );
     }
