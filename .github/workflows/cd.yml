@@ -53,14 +53,16 @@ jobs:
         run: |
           s3cmd sync --acl-public --no-mime-magic --guess-mime-type \
             --add-header="Cache-Control:public, max-age=31536000, immutable" \
-            dist/widget/ s3://search-widget-c211/${{ steps.get_version.outputs.VERSION }}/
+            --exclude="index.html" --exclude="index.css" \
+            dist/ s3://search-widget-c211/${{ steps.get_version.outputs.VERSION }}/
 
       - name: Upload to latest folder
         run: |
           s3cmd sync --acl-public --no-mime-magic --guess-mime-type \
             --add-header="Cache-Control:public, max-age=3600" \
             --delete-removed \
-            dist/widget/ s3://search-widget-c211/latest/
+            --exclude="index.html" --exclude="index.css" \
+            dist/ s3://search-widget-c211/latest/
 
       - name: Print CDN URLs
         run: |
