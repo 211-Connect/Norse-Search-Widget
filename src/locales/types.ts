@@ -25,4 +25,5 @@ export type OtherTranslations = {
   unableToRetrieveLocation: string;
   failedToLoadWidget: string;
   unknownError: string;
+  noSuggestionsFound: string;
 };

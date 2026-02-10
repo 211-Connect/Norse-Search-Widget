@@ -80,3 +80,15 @@ export const badge = style({
   borderRadius: "var(--widget-radius)",
   flexShrink: 0,
 });
+
+export const placeholder = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: vars.spacing.sm,
+  fontSize: vars.fontSize.sm,
+  color: vars.color.text,
+  textAlign: "center",
+  padding: vars.spacing.lg,
+  lineHeight: vars.lineHeight.md,
+});

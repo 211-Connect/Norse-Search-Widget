@@ -414,6 +414,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Unable to retrieve location",
     failedToLoadWidget: "Failed to load widget",
     unknownError: "Unknown error",
+    noSuggestionsFound:
+      "No suggestions found, but you can still search for anything",
   },
   pl: {
     search: "Szukaj",
@@ -425,6 +427,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Nie można pobrać lokalizacji",
     failedToLoadWidget: "Nie udało się załadować widżetu",
     unknownError: "Nieznany błąd",
+    noSuggestionsFound:
+      "Nie znaleziono sugestii, ale możesz wyszukać cokolwiek",
   },
   es: {
     search: "Buscar",
@@ -436,6 +440,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "No se puede obtener la ubicación",
     failedToLoadWidget: "Error al cargar el widget",
     unknownError: "Error desconocido",
+    noSuggestionsFound:
+      "No se encontraron sugerencias, pero puedes buscar cualquier cosa",
   },
   am: {
     search: "ፍለጋ",
@@ -447,6 +453,7 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "አካባቢን ማግኘት አልተቻለም",
     failedToLoadWidget: "ዊጀትን መጫን አልተቻለም",
     unknownError: "ያልታወቀ ስህተት",
+    noSuggestionsFound: "ምንም አስተያየቶች አልተገኙም፣ ግን አሁንም ማንኛውንም ነገር መፈለግ ይችላሉ",
   },
   ar: {
     search: "بحث",
@@ -458,6 +465,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "تعذر استرداد الموقع",
     failedToLoadWidget: "فشل تحميل الأداة",
     unknownError: "خطأ غير معروف",
+    noSuggestionsFound:
+      "لم يتم العثور على اقتراحات، ولكن لا يزال بإمكانك البحث عن أي شيء",
   },
   de: {
     search: "Suchen",
@@ -469,6 +478,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Standort konnte nicht abgerufen werden",
     failedToLoadWidget: "Widget konnte nicht geladen werden",
     unknownError: "Unbekannter Fehler",
+    noSuggestionsFound:
+      "Keine Vorschläge gefunden, aber Sie können trotzdem nach allem suchen",
   },
   fa: {
     search: "جستجو",
@@ -480,6 +491,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "امکان بازیابی موقعیت وجود ندارد",
     failedToLoadWidget: "بارگذاری ابزارک ناموفق بود",
     unknownError: "خطای ناشناخته",
+    noSuggestionsFound:
+      "پیشنهادی یافت نشد، اما همچنان می‌توانید هر چیزی را جستجو کنید",
   },
   fi: {
     search: "Haku",
@@ -491,6 +504,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Sijaintia ei voitu hakea",
     failedToLoadWidget: "Widgetin lataus epäonnistui",
     unknownError: "Tuntematon virhe",
+    noSuggestionsFound:
+      "Ehdotuksia ei löytynyt, mutta voit silti etsiä mitä tahansa",
   },
   fil: {
     search: "Maghanap",
@@ -502,6 +517,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Hindi makuha ang lokasyon",
     failedToLoadWidget: "Nabigong i-load ang widget",
     unknownError: "Hindi kilalang error",
+    noSuggestionsFound:
+      "Walang nakitang mungkahi, ngunit maaari ka pa ring maghanap ng anumang bagay",
   },
   ff: {
     search: "Yiylo",
@@ -513,6 +530,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Horiima heɓde nokkuure",
     failedToLoadWidget: "Njaamaali loowde widget",
     unknownError: "Juumre anndaaka",
+    noSuggestionsFound:
+      "Yeewaani ɓeyditte kono aɗa waawi yiylotaade hay huunde",
   },
   fr: {
     search: "Rechercher",
@@ -524,6 +543,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Impossible de récupérer la position",
     failedToLoadWidget: "Échec du chargement du widget",
     unknownError: "Erreur inconnue",
+    noSuggestionsFound:
+      "Aucune suggestion trouvée, mais vous pouvez toujours rechercher n'importe quoi",
   },
   hi: {
     search: "खोजें",
@@ -535,6 +556,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "स्थान पुनर्प्राप्त करने में असमर्थ",
     failedToLoadWidget: "विजेट लोड करने में विफल",
     unknownError: "अज्ञात त्रुटि",
+    noSuggestionsFound:
+      "कोई सुझाव नहीं मिला, लेकिन आप अभी भी कुछ भी खोज सकते हैं",
   },
   hr: {
     search: "Traži",
@@ -546,6 +569,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Ne mogu dohvatiti lokaciju",
     failedToLoadWidget: "Učitavanje widgeta nije uspjelo",
     unknownError: "Nepoznata greška",
+    noSuggestionsFound:
+      "Nismo mogli pronaći upit koji se odnosi na vas, ali slobodno pretražujte po tekstu",
   },
   ht: {
     search: "Chèche",
@@ -557,6 +582,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Pa kapab jwenn kote",
     failedToLoadWidget: "Chaje widget pa mache",
     unknownError: "Erè enkoni",
+    noSuggestionsFound:
+      "Nou pa t kapab jwenn yon kesyon ki gen rapò avè w men ou lib pou chèche pa tèks",
   },
   ko: {
     search: "검색",
@@ -568,6 +595,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "위치를 가져올 수 없습니다",
     failedToLoadWidget: "위젯을 로드하지 못했습니다",
     unknownError: "알 수 없는 오류",
+    noSuggestionsFound:
+      "귀하와 관련된 쿼리를 찾을 수 없지만 텍스트로 자유롭게 검색하세요",
   },
   km: {
     search: "ស្វែងរក",
@@ -579,6 +608,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "មិនអាចទទួលបានទីតាំងបានទេ",
     failedToLoadWidget: "បរាជ័យក្នុងការផ្ទុក widget",
     unknownError: "កំហុសមិនស្គាល់",
+    noSuggestionsFound:
+      "យើងមិនអាចរកឃើញសំណួរដែលទាក់ទងនឹងអ្នកបានទេ ប៉ុន្តែសូមស្វែងរកដោយអត្ថបទដោយសេរី",
   },
   lo: {
     search: "ຄົ້ນຫາ",
@@ -590,6 +621,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "ບໍ່ສາມາດຮັບສະຖານທີ່ໄດ້",
     failedToLoadWidget: "ໂຫລດ widget ບໍ່ສຳເລັດ",
     unknownError: "ຄວາມຜິດພາດທີ່ບໍ່ຮູ້ຈັກ",
+    noSuggestionsFound:
+      "ພວກເຮົາບໍ່ສາມາດຊອກຫາຄຳຖາມທີ່ກ່ຽວຂ້ອງກັບທ່ານໄດ້ແຕ່ຢ່າລັງເລທີ່ຈະຄົ້ນຫາໂດຍຂໍ້ຄວາມ",
   },
   mww: {
     search: "Nrhiav",
@@ -601,6 +634,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Tsis tau txais qhov chaw nyob",
     failedToLoadWidget: "Tsis thauj tau widget",
     unknownError: "Yuam kev tsis paub",
+    noSuggestionsFound:
+      "Peb nrhiav tsis tau ib lo lus nug txog koj tab sis koj xav nrhiav los ntawm cov ntawv",
   },
   ne: {
     search: "खोज्नुहोस्",
@@ -612,6 +647,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "स्थान पुन: प्राप्त गर्न असमर्थ",
     failedToLoadWidget: "विजेट लोड गर्न असफल भयो",
     unknownError: "अज्ञात त्रुटि",
+    noSuggestionsFound:
+      "हामीले तपाईंसँग सम्बन्धित कुनै क्वेरी फेला पार्न सकेनौं तर पाठद्वारा खोजी गर्न स्वतन्त्र महसुस गर्नुहोस्",
   },
   om: {
     search: "Barbaadi",
@@ -623,6 +660,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Bakka argachuu hin danda'amne",
     failedToLoadWidget: "Widget fe'uun dhabame",
     unknownError: "Dogongora hin beekamne",
+    noSuggestionsFound:
+      "Gaaffii si wajjin walqabatu argachuu hin dandeenye garuu barreeffamaan barbaaduu bilisaan",
   },
   or: {
     search: "ଖୋଜନ୍ତୁ",
@@ -634,6 +673,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "ଅବସ୍ଥାନ ପୁନରୁଦ୍ଧାର କରିବାରେ ଅସମର୍ଥ",
     failedToLoadWidget: "ୱିଜେଟ୍ ଲୋଡ୍ କରିବାରେ ବିଫଳ",
     unknownError: "ଅଜଣା ତ୍ରୁଟି",
+    noSuggestionsFound:
+      "ଆମେ ଆପଣଙ୍କ ସହିତ ସମ୍ବନ୍ଧିତ କୌଣସି କ୍ୱେରୀ ଖୋଜି ପାରିଲୁ ନାହିଁ କିନ୍ତୁ ପାଠ୍ୟ ଦ୍ୱାରା ସନ୍ଧାନ କରିବାକୁ ମୁକ୍ତ ଅନୁଭବ କରନ୍ତୁ",
   },
   ps: {
     search: "لټون",
@@ -645,6 +686,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "موقعیت بیرته ترلاسه کولو کې ناکام",
     failedToLoadWidget: "د ویجټ بارولو کې ناکامي",
     unknownError: "ناپېژندلې تېروتنه",
+    noSuggestionsFound:
+      "موږ ستاسو سره تړلې پوښتنه ونه موندله مګر د متن له لارې لټون وکړئ",
   },
   prs: {
     search: "جستجو",
@@ -656,6 +699,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "امکان بازیابی موقعیت وجود ندارد",
     failedToLoadWidget: "بارگذاری ابزارک ناموفق بود",
     unknownError: "خطای ناشناخته",
+    noSuggestionsFound:
+      "ما نتوانستیم پرس و جویی مرتبط با شما پیدا کنیم اما با خیال راحت با متن جستجو کنید",
   },
   pt: {
     search: "Pesquisar",
@@ -667,6 +712,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Não foi possível recuperar a localização",
     failedToLoadWidget: "Falha ao carregar o widget",
     unknownError: "Erro desconhecido",
+    noSuggestionsFound:
+      "Não conseguimos encontrar uma consulta relacionada a você, mas fique à vontade para pesquisar por texto",
   },
   ru: {
     search: "Поиск",
@@ -678,6 +725,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Не удалось получить местоположение",
     failedToLoadWidget: "Не удалось загрузить виджет",
     unknownError: "Неизвестная ошибка",
+    noSuggestionsFound:
+      "Мы не смогли найти запрос, связанный с вами, но вы можете выполнить поиск по тексту",
   },
   so: {
     search: "Raadi",
@@ -689,6 +738,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Lama heli karo goobta",
     failedToLoadWidget: "Ku guuldarraysatay soo dejinta widget-ka",
     unknownError: "Khalad aan la garanayn",
+    noSuggestionsFound:
+      "Ma heli karno su'aal kula xidhiidha laakiin si xor ah u raadi qoraalka",
   },
   sw: {
     search: "Tafuta",
@@ -700,6 +751,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Haiwezi kupata eneo",
     failedToLoadWidget: "Imeshindwa kupakia widget",
     unknownError: "Kosa lisilojulikana",
+    noSuggestionsFound:
+      "Hatukuweza kupata swali linalohusiana nawe lakini jisikie huru kutafuta kwa maandishi",
   },
   uk: {
     search: "Пошук",
@@ -711,6 +764,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Не вдалося отримати місцезнаходження",
     failedToLoadWidget: "Не вдалося завантажити віджет",
     unknownError: "Невідома помилка",
+    noSuggestionsFound:
+      "Ми не змогли знайти запит, пов'язаний з вами, але ви можете шукати за текстом",
   },
   vi: {
     search: "Tìm kiếm",
@@ -722,6 +777,8 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "Không thể lấy vị trí",
     failedToLoadWidget: "Không tải được widget",
     unknownError: "Lỗi không xác định",
+    noSuggestionsFound:
+      "Chúng tôi không thể tìm thấy truy vấn liên quan đến bạn nhưng hãy thoải mái tìm kiếm theo văn bản",
   },
   yue: {
     search: "搜尋",
@@ -733,6 +790,7 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "無法獲取位置",
     failedToLoadWidget: "無法載入小工具",
     unknownError: "未知錯誤",
+    noSuggestionsFound: "我哋搵唔到同你相關嘅查詢，但你可以隨意用文字搜尋",
   },
   "zh-Hans": {
     search: "搜索",
@@ -744,6 +802,7 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "无法获取位置",
     failedToLoadWidget: "无法加载小部件",
     unknownError: "未知错误",
+    noSuggestionsFound: "我们找不到与您相关的查询，但请随意按文本搜索",
   },
   "zh-Hant": {
     search: "搜尋",
@@ -755,5 +814,6 @@ export const otherTranslations: Record<Locale, OtherTranslations> = {
     unableToRetrieveLocation: "無法獲取位置",
     failedToLoadWidget: "無法載入小工具",
     unknownError: "未知錯誤",
+    noSuggestionsFound: "我們找不到與您相關的查詢，但請隨意按文字搜尋",
   },
 };

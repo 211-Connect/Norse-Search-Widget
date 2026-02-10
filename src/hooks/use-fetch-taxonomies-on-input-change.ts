@@ -1,4 +1,4 @@
-import { useEffect } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 import { debounce } from "radash";
 import { useSearchContext } from "../context/search-context";
 import { useConfigContext } from "../context/config-context";
@@ -19,18 +19,45 @@ export const useFetchTaxonomiesOnInputChange = () => {
     setQueryInputValue,
   } = useSearchContext();
 
+  // ref is necessary to access the latest value of focusedInput inside the debounced function
+  const focusedInputRef = useRef(focusedInput);
+
+  useEffect(() => {
+    focusedInputRef.current = focusedInput;
+  }, [focusedInput]);
+
   useEffect(() => {
     if (focusedInput !== "query" || !queryInputValue.length) {
       return;
     }
 
+    setResults((val) => ({
+      items: [],
+      groups: [
+        ...(val.groups || []).filter((g) => g.id !== "taxonomies"),
+        {
+          id: "taxonomies",
+          title: "Taxonomies",
+          items: [{ id: "loading", text: "Loading...", isLoading: true }],
+        },
+      ],
+    }));
+
     const debouncedFetch = debounce({ delay: 1000 }, async () => {
+      if (focusedInputRef.current !== "query") {
+        return;
+      }
+
       try {
         const data = await fetchTaxonomies({
           locale,
           tenantId,
           query: queryInputValue,
         });
+
+        if (focusedInputRef.current !== "query") {
+          return;
+        }
 
         setResults((val) => ({
           items: [],

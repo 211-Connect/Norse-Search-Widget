@@ -1,5 +1,8 @@
 import { useSearchContext } from "../../context/search-context";
+import { useConfigContext } from "../../context/config-context";
+import { getOtherTranslations } from "../../locales";
 import { SearchResultItem } from "../../types/search-results";
+import { SearchNotFoundIcon, LoaderIcon } from "../../icons";
 import * as styles from "./search-results-list.css";
 
 type SearchResultListItemProps = {
@@ -7,10 +10,18 @@ type SearchResultListItemProps = {
 };
 
 const SearchResultListItem = ({ item }: SearchResultListItemProps) => (
-  <div className={styles.item} onClick={item.onClick}>
+  <div
+    className={styles.item}
+    onClick={item.isLoading ? undefined : item.onClick}
+  >
     {item.Icon && (
       <div className={styles.iconWrapper}>
         <item.Icon size={16} />
+      </div>
+    )}
+    {item.isLoading && (
+      <div className={styles.iconWrapper}>
+        <LoaderIcon size={16} />
       </div>
     )}
     <span className={styles.itemText}>{item.text}</span>
@@ -19,35 +30,53 @@ const SearchResultListItem = ({ item }: SearchResultListItemProps) => (
 );
 
 export const SearchResultsList = () => {
-  const { results } = useSearchContext();
+  const { locale } = useConfigContext();
+  const { results, queryInputValue, focusedInput } = useSearchContext();
+
+  const otherTexts = getOtherTranslations(locale);
 
   const hasResults =
     (results.groups && results.groups.length > 0) ||
     (results.items && results.items.length > 0);
 
-  if (!hasResults) {
+  const showPlaceholder =
+    focusedInput === "query" && queryInputValue.length > 0 && !hasResults;
+
+  if (!hasResults && !showPlaceholder) {
     return null;
   }
 
   return (
     <div id="search-results-list" className={styles.container}>
-      {results.groups?.map((group) => (
-        <div key={group.id} className={styles.group}>
-          <h3 className={styles.groupTitle}>{group.title}</h3>
-          <div className={styles.itemsList}>
-            {group.items.map((item) => (
-              <SearchResultListItem key={item.id} item={item} />
-            ))}
-          </div>
+      {showPlaceholder ? (
+        <div
+          id="search-results-list-placeholder"
+          className={styles.placeholder}
+        >
+          <SearchNotFoundIcon size={36} />
+          {otherTexts.noSuggestionsFound}
         </div>
-      ))}
-
-      {results.items && results.items.length > 0 && (
-        <div className={styles.itemsList}>
-          {results.items.map((item) => (
-            <SearchResultListItem key={item.id} item={item} />
+      ) : (
+        <>
+          {results.groups?.map((group) => (
+            <div key={group.id} className={styles.group}>
+              <h3 className={styles.groupTitle}>{group.title}</h3>
+              <div className={styles.itemsList}>
+                {group.items.map((item) => (
+                  <SearchResultListItem key={item.id} item={item} />
+                ))}
+              </div>
+            </div>
           ))}
-        </div>
+
+          {results.items && results.items.length > 0 && (
+            <div className={styles.itemsList}>
+              {results.items.map((item) => (
+                <SearchResultListItem key={item.id} item={item} />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

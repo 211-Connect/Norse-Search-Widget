@@ -1,4 +1,4 @@
-import { useEffect } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 import { debounce } from "radash";
 import { useSearchContext } from "../context/search-context";
 import { useCmsConfig, useConfigContext } from "../context/config-context";
@@ -20,6 +20,13 @@ export const useFetchLocationsOnInputChange = () => {
     setLocationInputValue,
     setLocationCoords,
   } = useSearchContext();
+
+  // ref is necessary to access the latest value of focusedInput inside the debounced function
+  const focusedInputRef = useRef(focusedInput);
+
+  useEffect(() => {
+    focusedInputRef.current = focusedInput;
+  }, [focusedInput]);
 
   useEffect(() => {
     if (focusedInput !== "location") {
@@ -45,12 +52,28 @@ export const useFetchLocationsOnInputChange = () => {
       });
     }
 
+    setResults({
+      groups: [],
+      items: [
+        everywhereItem,
+        { id: "loading", text: "Loading locations...", isLoading: true },
+      ],
+    });
+
     const debouncedFetch = debounce({ delay: 500 }, async () => {
+      if (focusedInputRef.current !== "location") {
+        return;
+      }
+
       try {
         const locations = await fetchMapboxLocations({
           query: locationInputValue,
           mapboxAccessToken: config.mapboxAccessToken,
         });
+
+        if (focusedInputRef.current !== "location") {
+          return;
+        }
 
         setResults({
           groups: [],
