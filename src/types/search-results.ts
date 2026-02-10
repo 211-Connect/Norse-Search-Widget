@@ -8,6 +8,7 @@ export type SearchResultItem = {
   Icon?: ComponentType<IconProps>;
   badge?: string;
   isLoading?: boolean;
+  isError?: boolean;
 };
 
 export type SearchResultGroup = {

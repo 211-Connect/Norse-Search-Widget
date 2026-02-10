@@ -2,7 +2,7 @@ import { useSearchContext } from "../../context/search-context";
 import { useConfigContext } from "../../context/config-context";
 import { getOtherTranslations } from "../../locales";
 import { SearchResultItem } from "../../types/search-results";
-import { SearchNotFoundIcon, LoaderIcon } from "../../icons";
+import { SearchNotFoundIcon, LoaderIcon, AlertCircleIcon } from "../../icons";
 import * as styles from "./search-results-list.css";
 
 type SearchResultListItemProps = {
@@ -11,8 +11,8 @@ type SearchResultListItemProps = {
 
 const SearchResultListItem = ({ item }: SearchResultListItemProps) => (
   <div
-    className={styles.item}
-    onClick={item.isLoading ? undefined : item.onClick}
+    className={item.isError ? styles.errorItem : styles.item}
+    onClick={item.isLoading || item.isError ? undefined : item.onClick}
   >
     {item.Icon && (
       <div className={styles.iconWrapper}>
@@ -24,7 +24,14 @@ const SearchResultListItem = ({ item }: SearchResultListItemProps) => (
         <LoaderIcon size={16} />
       </div>
     )}
-    <span className={styles.itemText}>{item.text}</span>
+    {item.isError && (
+      <div className={styles.errorIconWrapper}>
+        <AlertCircleIcon size={16} />
+      </div>
+    )}
+    <span className={item.isError ? styles.errorText : styles.itemText}>
+      {item.text}
+    </span>
     {item.badge && <span className={styles.badge}>{item.badge}</span>}
   </div>
 );

@@ -91,6 +91,28 @@ export const useFetchTaxonomiesOnInputChange = () => {
         }));
       } catch (error) {
         console.error("Failed to fetch taxonomies:", error);
+
+        if (focusedInputRef.current !== "query") {
+          return;
+        }
+
+        setResults((val) => ({
+          items: [],
+          groups: [
+            ...(val.groups || []).filter((g) => g.id !== "taxonomies"),
+            {
+              id: "taxonomies",
+              title: "Taxonomies",
+              items: [
+                {
+                  id: "error",
+                  text: "Failed to load taxonomies. Please try again.",
+                  isError: true,
+                },
+              ],
+            },
+          ],
+        }));
       }
     });
 

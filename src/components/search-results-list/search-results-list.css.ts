@@ -54,6 +54,15 @@ export const item = style({
   },
 });
 
+export const errorItem = style({
+  display: "flex",
+  alignItems: "center",
+  gap: vars.spacing.sm,
+  padding: vars.spacing.xs,
+  borderRadius: "var(--widget-radius)",
+  cursor: "default",
+});
+
 export const iconWrapper = style({
   display: "flex",
   alignItems: "center",
@@ -68,6 +77,23 @@ export const itemText = style({
   flex: 1,
   fontSize: vars.fontSize.xs,
   color: "var(--widget-primary)",
+  lineHeight: vars.lineHeight.sm,
+});
+
+export const errorIconWrapper = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
+  width: vars.spacing.md,
+  height: vars.spacing.md,
+  color: vars.color.text,
+});
+
+export const errorText = style({
+  flex: 1,
+  fontSize: vars.fontSize.xs,
+  color: vars.color.text,
   lineHeight: vars.lineHeight.sm,
 });
 

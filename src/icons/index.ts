@@ -7,6 +7,7 @@ export { TargetIcon } from "./target-icon";
 export { LoaderIcon } from "./loader-icon";
 export { XIcon } from "./x-icon";
 export { SearchNotFoundIcon } from "./search-not-found-icon";
+export { AlertCircleIcon } from "./alert-circle-icon";
 export type { IconProps } from "./types";
 export type IconName =
   | "search"

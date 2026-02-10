@@ -94,9 +94,21 @@ export const useFetchLocationsOnInputChange = () => {
         });
       } catch (error) {
         console.error("Failed to fetch locations:", error);
+
+        if (focusedInputRef.current !== "location") {
+          return;
+        }
+
         setResults({
           groups: [],
-          items: [everywhereItem],
+          items: [
+            everywhereItem,
+            {
+              id: "error",
+              text: "Failed to load locations. Please try again.",
+              isError: true,
+            },
+          ],
         });
       }
     });
