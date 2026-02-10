@@ -1,8 +1,6 @@
 import { SearchWidgetConfig } from "src/types/search-widget-config";
 import { TaxonomyResponse } from "../types/taxonomy";
-
-// defined in vite.config.ts
-declare const __API_URL__: string;
+import { API_URL } from "../env";
 
 const API_VERSION = "2";
 
@@ -19,7 +17,7 @@ export const fetchTaxonomies = async ({
     query,
   });
 
-  const response = await fetch(`${__API_URL__}/taxonomy?${searchParams}`, {
+  const response = await fetch(`${API_URL}/taxonomy?${searchParams}`, {
     headers: {
       "accept-language": locale,
       "x-tenant-id": tenantId,

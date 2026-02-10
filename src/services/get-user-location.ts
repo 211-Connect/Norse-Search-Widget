@@ -1,17 +1,11 @@
-import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding";
+import { API_URL } from "../env";
 
 export type UserLocation = {
   placeName: string;
   coordinates: [number, number]; // [longitude, latitude]
 };
 
-type GetUserLocationParams = {
-  mapboxAccessToken: string;
-};
-
-export const getUserLocation = ({
-  mapboxAccessToken,
-}: GetUserLocationParams): Promise<UserLocation> => {
+export const getUserLocation = (locale: string): Promise<UserLocation> => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
       reject(new Error("Geolocation is not supported by this browser"));
@@ -25,19 +19,26 @@ export const getUserLocation = ({
 
         // Try to get place name via reverse geocoding
         try {
-          const geocodingClient = mbxGeocoding({
-            accessToken: mapboxAccessToken,
+          const params = new URLSearchParams({
+            coordinates: `${longitude},${latitude}`,
+            locale,
           });
 
-          const response = await geocodingClient
-            .reverseGeocode({
-              query: coordinates,
-              limit: 1,
-            })
-            .send();
+          const response = await fetch(
+            `${API_URL}/geocoding/reverse?${params.toString()}`,
+            {
+              headers: { "x-api-version": "1" },
+            },
+          );
+
+          if (!response.ok) {
+            throw new Error("Reverse geocoding request failed");
+          }
+
+          const data = await response.json();
 
           const placeName =
-            response.body?.features?.[0]?.place_name ||
+            data[0]?.address ||
             `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
 
           resolve({

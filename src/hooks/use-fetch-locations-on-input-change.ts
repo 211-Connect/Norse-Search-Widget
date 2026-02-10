@@ -1,14 +1,13 @@
 import { useEffect, useRef } from "preact/hooks";
 import { debounce } from "radash";
 import { useSearchContext } from "../context/search-context";
-import { useCmsConfig, useConfigContext } from "../context/config-context";
+import { useConfigContext } from "../context/config-context";
 import { EarthIcon, PlaceIcon } from "../icons";
 import { fetchMapboxLocations } from "../services/fetch-mapbox-locations";
 import { SearchResultItem } from "../types/search-results";
 import { getEverywhereLabel } from "../locales/utils";
 
 export const useFetchLocationsOnInputChange = () => {
-  const config = useCmsConfig();
   const { locale } = useConfigContext();
   const {
     setResults,
@@ -68,7 +67,7 @@ export const useFetchLocationsOnInputChange = () => {
       try {
         const locations = await fetchMapboxLocations({
           query: locationInputValue,
-          mapboxAccessToken: config.mapboxAccessToken,
+          locale,
         });
 
         if (focusedInputRef.current !== "location") {
@@ -107,5 +106,5 @@ export const useFetchLocationsOnInputChange = () => {
     return () => {
       debouncedFetch.cancel();
     };
-  }, [locationInputValue, focusedInput, config.mapboxAccessToken, locale]);
+  }, [locationInputValue, focusedInput, locale]);
 };

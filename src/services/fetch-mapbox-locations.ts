@@ -1,4 +1,4 @@
-import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding";
+import { API_URL } from "../env";
 
 export type MapboxLocation = {
   id: string;
@@ -8,32 +8,44 @@ export type MapboxLocation = {
 
 type FetchMapboxLocationsParams = {
   query: string;
-  mapboxAccessToken: string;
+  locale: string;
 };
 
 export const fetchMapboxLocations = async ({
   query,
-  mapboxAccessToken,
+  locale,
 }: FetchMapboxLocationsParams): Promise<MapboxLocation[]> => {
   try {
-    const geocodingClient = mbxGeocoding({ accessToken: mapboxAccessToken });
+    const params = new URLSearchParams({
+      address: query,
+      locale,
+      limit: "9", // Get 9 locations (Everywhere + 9 other proposals)
+    });
 
-    const response = await geocodingClient
-      .forwardGeocode({
-        query,
-        limit: 9, // Get 9 locations (Everywhere + 9 other proposals)
-        autocomplete: true,
-      })
-      .send();
+    const response = await fetch(
+      `${API_URL}/geocoding/forward?${params.toString()}`,
+      {
+        headers: {
+          "x-api-version": "1",
+        },
+      },
+    );
 
-    if (!response.body?.features) {
+    if (!response.ok) {
+      console.error("Forward geocoding request failed:", response.statusText);
       return [];
     }
 
-    return response.body.features.map((feature) => ({
-      id: feature.id,
-      placeName: feature.place_name,
-      coordinates: feature.center as [number, number],
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      return [];
+    }
+
+    return data.map((item, index) => ({
+      id: `location-${index}`,
+      placeName: item.address,
+      coordinates: item.coordinates,
     }));
   } catch (error) {
     console.error("Failed to fetch Mapbox locations:", error);

@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { Button } from "../../ui/button/button";
 import { TargetIcon, LoaderIcon } from "../../icons";
-import { useCmsConfig, useConfigContext } from "../../context/config-context";
+import { useConfigContext } from "../../context/config-context";
 import { useSearchContext } from "../../context/search-context";
 import { getUserLocation } from "../../services/get-user-location";
 import { getOtherTranslations } from "../../locales";
@@ -11,7 +11,6 @@ type UseMyLocationButtonProps = {
 };
 
 export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
-  const config = useCmsConfig();
   const { locale } = useConfigContext();
   const otherTexts = getOtherTranslations(locale);
   const { setLocationInputValue, setLocationCoords, setFocusedInput } =
@@ -23,9 +22,7 @@ export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
     onError("");
 
     try {
-      const location = await getUserLocation({
-        mapboxAccessToken: config.mapboxAccessToken,
-      });
+      const location = await getUserLocation(locale);
       setLocationInputValue(location.placeName);
       setLocationCoords(location.coordinates);
       setFocusedInput(null);
