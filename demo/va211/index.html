@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VA211 Search Widget Demo</title>
+    <script src="https://search-widget.c211.io/latest/search-widget.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://search-widget.c211.io/latest/search-widget.css"
+    />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Norse Search Widget</h1>
+        <p class="subtitle">Embeddable Search Widget for 211 Services</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Introduction Section -->
+      <section class="section">
+        <h2>🚀 Overview</h2>
+        <p>
+          The Norse Search Widget is a lightweight, embeddable search component
+          that can be integrated into any website. Built with Preact and styled
+          with Vanilla Extract, it provides a customizable search interface for
+          211 services.
+        </p>
+        <div class="features">
+          <div class="feature">
+            <span class="icon">🔌</span>
+            <strong>Framework-Agnostic</strong>
+            <p>Works with any website - no framework required</p>
+          </div>
+          <div class="feature">
+            <span class="icon">🎨</span>
+            <strong>Fully Customizable</strong>
+            <p>Easy to style with CSS variables and IDs</p>
+          </div>
+          <div class="feature">
+            <span class="icon">⚡</span>
+            <strong>Lightweight</strong>
+            <p>Minimal bundle size with Preact</p>
+          </div>
+          <div class="feature">
+            <span class="icon">🌐</span>
+            <strong>Multi-language</strong>
+            <p>Supports multiple locales (en, es, etc.)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Basic Example Section -->
+      <section class="section">
+        <h2>📝 Basic Implementation</h2>
+        <p>
+          Here's the widget with default configuration. The widget automatically
+          fetches its configuration from CMS (Payload) based on the provided
+          tenant ID.
+        </p>
+
+        <!-- Basic Widget Example -->
+        <div class="widget-demo">
+          <div
+            id="search-widget"
+            tid="06f86a2b-c060-4374-8aca-3d70b280cb24"
+            d="http://localhost:3000"
+            l="en"
+          ></div>
+        </div>
+
+        <div class="code-section">
+          <h3>HTML Code:</h3>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- 1. Include the widget stylesheet in &lt;head&gt; --&gt;
+    &lt;link rel="stylesheet" href="https://search-widget.c211.io/latest/search-widget.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- 2. Add the widget container in &lt;body&gt; where you want it to appear --&gt;
+    &lt;div
+      id="search-widget"
+      tid="06f86a2b-c060-4374-8aca-3d70b280cb24"
+      d="https://search.211virginia.org"
+      l="en"
+    &gt;&lt;/div&gt;
+
+    &lt;!-- 3. Load the widget script at the end of &lt;body&gt; --&gt;
+    &lt;script src="https://search-widget.c211.io/latest/search-widget.umd.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="info-box">
+          <h4>Configuration Attributes:</h4>
+          <ul>
+            <li>
+              <code>id</code> - <strong>Widget ID</strong>: Must be
+              <code>"search-widget"</code>. This determines where the widget is
+              embedded on your page.
+            </li>
+            <li>
+              <code>tid</code> - <strong>Tenant ID</strong>: Unique identifier
+              for your organization (fetches config from Payload CMS)
+            </li>
+            <li>
+              <code>d</code> - <strong>Domain</strong>: API domain for your 211
+              service
+            </li>
+            <li>
+              <code>l</code> - <strong>Locale</strong>: Language code (en, es,
+              etc.) - defaults to "en"
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Customization Section -->
+      <section class="section">
+        <h2>🎨 Advanced Customization</h2>
+        <p>
+          The widget can be extensively customized using CSS by targeting widget
+          element IDs. You can also change the locale to support different
+          languages.
+        </p>
+
+        <div class="code-section">
+          <h3>Example: Spanish Locale with Custom Styling</h3>
+          <pre><code>&lt;!-- Change locale to Spanish --&gt;
+&lt;div
+  id="search-widget"
+  tid="06f86a2b-c060-4374-8aca-3d70b280cb24"
+  d="https://search.211virginia.org"
+  l="es"
+&gt;&lt;/div&gt;
+
+&lt;style&gt;
+  /* Customize the main container */
+  #sw-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    padding: 2.5rem !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 40px rgba(118, 75, 162, 0.3) !important;
+  }
+
+  /* Customize the title */
+  #sw-title {
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Customize the search input */
+  #sw-search-input {
+    font-size: 1.1rem !important;
+    padding: 1rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  /* Customize the location button */
+  #sw-add-location-button {
+    margin-top: 1rem !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+  }
+&lt;/style&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- CMS Configuration Section -->
+      <section class="section">
+        <h2>⚙️ CMS Configuration</h2>
+        <p>
+          The widget automatically fetches its configuration from your tenant's
+          <strong>Payload CMS</strong> using the tenant ID. This allows you to
+          centrally manage:
+        </p>
+        <div class="cms-features">
+          <div class="cms-feature">
+            <strong>🎨 Brand Colors</strong>
+            <p>Primary colors, background colors, and accent colors</p>
+          </div>
+          <div class="cms-feature">
+            <strong>📝 Text Content</strong>
+            <p>
+              Widget title, input placeholders, button labels, and error
+              messages
+            </p>
+          </div>
+          <div class="cms-feature">
+            <strong>🌐 Localization</strong>
+            <p>Multiple language support configured per tenant</p>
+          </div>
+          <div class="cms-feature">
+            <strong>🔧 Behavior Settings</strong>
+            <p>Default search radius, result limits, and feature toggles</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <p>
+            When the widget loads, it makes a request to
+            <code>GET /api/api/search-config/[tenantId]/[locale]</code> to fetch
+            all configuration settings. This ensures consistent branding and
+            content across all implementations of your widget.
+          </p>
+        </div>
+      </section>
+
+      <!-- Integration Steps -->
+      <section class="section">
+        <h2>📋 Integration Checklist</h2>
+        <div class="checklist">
+          <div class="checklist-item">
+            <span class="number">1</span>
+            <div>
+              <strong>Add CSS Stylesheet</strong>
+              <p>
+                Include the widget stylesheet in your HTML
+                <code>&lt;head&gt;</code>
+              </p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <span class="number">2</span>
+            <div>
+              <strong>Add Widget Container</strong>
+              <p>
+                Place the widget <code>&lt;div&gt;</code> with required
+                attributes (<code>tid</code>, <code>d</code>, <code>l</code>)
+              </p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <span class="number">3</span>
+            <div>
+              <strong>Load Widget Script</strong>
+              <p>
+                Include the widget JavaScript at the end of your
+                <code>&lt;body&gt;</code>
+              </p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <span class="number">4</span>
+            <div>
+              <strong>(Optional) Add Custom Styles</strong>
+              <p>Override default styles using widget element IDs</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <span class="number">5</span>
+            <div>
+              <strong>Test Your Implementation</strong>
+              <p>Verify the widget loads correctly and fetches CMS config</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          Built with ❤️ by
+          <a
+            href="https://connect211.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >211 Connect</a
+          >
+        </p>
+        <p class="footer-links">
+          <a
+            href="https://github.com/211-Connect/Norse-Search-Widget"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
