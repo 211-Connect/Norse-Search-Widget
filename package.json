@@ -1,6 +1,6 @@
 {
   "name": "search-widget",
-  "version": "0.1.0",
+  "version": "0.0.3",
   "description": "Embeddable search widget built with Preact and Vite",
   "type": "module",
   "main": "./dist/widget/search-widget.umd.js",
