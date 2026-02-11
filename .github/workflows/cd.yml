@@ -64,6 +64,19 @@ jobs:
             --exclude="index.html" --exclude="index.css" \
             dist/ s3://search-widget-c211/latest/
 
+      - name: Purge CDN cache for latest files
+        run: |
+          curl -X DELETE "https://api.digitalocean.com/v2/cdn/endpoints/${{ secrets.DO_CDN_ENDPOINT_ID }}/cache" \
+            -H "Authorization: Bearer ${{ secrets.DO_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "files": [
+                "latest/search-widget.umd.js",
+                "latest/search-widget.es.js",
+                "latest/search-widget.css"
+              ]
+            }'
+
       - name: Print CDN URLs
         run: |
           echo "🚀 Deployment successful!"
