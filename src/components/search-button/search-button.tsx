@@ -36,17 +36,19 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
       queryParams.set("distance", distance.toString());
     }
 
+    const localePath = locale ? `/${locale}` : "";
+
     if (!queryConfig) {
       queryParams.set("query", queryInputValue);
       queryParams.set("query_label", queryInputValue);
       queryParams.set("query_type", "text");
       window.open(
-        `https://${config.domain}?${queryParams.toString()}`,
+        `https://${config.domain}${localePath}?${queryParams.toString()}`,
         "_blank",
       );
     } else if ("href" in queryConfig) {
       window.open(
-        `${queryConfig.href}?${queryParams.toString()}`,
+        `${queryConfig.href}${localePath}?${queryParams.toString()}`,
         queryConfig.openInNewTab ? "_blank" : "_self",
       );
     } else {
@@ -54,7 +56,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
       queryParams.set("query_label", queryConfig.queryLabel);
       queryParams.set("query_type", queryConfig.queryType);
       window.open(
-        `https://${config.domain}/search?${queryParams.toString()}`,
+        `https://${config.domain}${localePath}/search?${queryParams.toString()}`,
         "_blank",
       );
     }
