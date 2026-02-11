@@ -32,7 +32,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
     if (locationCoords) {
       queryParams.set("coords", locationCoords.join(","));
     }
-    if (distance !== null) {
+    if (distance !== null && locationParam !== "Everywhere") {
       queryParams.set("distance", distance.toString());
     }
 
