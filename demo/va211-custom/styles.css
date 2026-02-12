@@ -14,7 +14,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .container {
@@ -124,7 +124,10 @@ body {
 
   #sw-search-input {
     font-size: 1rem !important;
-    padding: 1rem !important;
+    padding-left: 2.5rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
   }
 
   #sw-search-button {
