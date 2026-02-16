@@ -49,11 +49,11 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
   useFetchLocationsOnInputChange();
 
   return (
-    <div id="search-modal" className={styles.overlay}>
-      <div id="search-modal-content" className={styles.content}>
-        <div id="search-modal-button-row" className={styles.buttonRow}>
+    <div id="sw-search-modal" className={styles.overlay}>
+      <div id="sw-search-modal-content" className={styles.content}>
+        <div id="sw-search-modal-button-row" className={styles.buttonRow}>
           <Button
-            id="search-modal-back-button"
+            id="sw-search-modal-back-button"
             onClick={onClose}
             size="md"
             variant="secondary"
@@ -66,7 +66,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
 
         <Input
           value={queryInputValue}
-          id="search-modal-query-input"
+          id="sw-search-modal-query-input"
           autofocus
           size="sm"
           onInput={setQueryInputValue}
@@ -81,7 +81,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
 
         <Input
           value={locationInputValue}
-          id="search-modal-location-input"
+          id="sw-search-modal-location-input"
           size="sm"
           onInput={setLocationInputValue}
           onFocus={() => setFocusedInput("location")}
@@ -104,7 +104,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
             </div>
             {locationError && (
               <p
-                id="search-modal-location-error"
+                id="sw-search-modal-location-error"
                 className={styles.locationError}
               >
                 {locationError}

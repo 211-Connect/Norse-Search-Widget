@@ -54,10 +54,10 @@ export const SearchResultsList = () => {
   }
 
   return (
-    <div id="search-results-list" className={styles.container}>
+    <div id="sw-search-results-list" className={styles.container}>
       {showPlaceholder ? (
         <div
-          id="search-results-list-placeholder"
+          id="sw-search-results-list-placeholder"
           className={styles.placeholder}
         >
           <SearchNotFoundIcon size={36} />

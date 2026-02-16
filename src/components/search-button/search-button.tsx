@@ -66,7 +66,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
 
   return (
     <Button
-      id="search-modal-search-button"
+      id="sw-search-modal-search-button"
       onClick={handleSearch}
       size="md"
       variant="primary"

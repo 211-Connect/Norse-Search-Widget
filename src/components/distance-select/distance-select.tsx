@@ -17,13 +17,13 @@ export const DistanceSelect = () => {
   return (
     <div className={styles.radiusGroup}>
       <label
-        htmlFor="search-modal-distance-select"
+        htmlFor="sw-search-modal-distance-select"
         className={styles.radiusLabel}
       >
         {getRadiusLabel(configContext.locale)}
       </label>
       <Select
-        id="search-modal-distance-select"
+        id="sw-search-modal-distance-select"
         value={distance ?? "any"}
         onChange={(value) =>
           setDistance(value === "any" ? null : Number(value))

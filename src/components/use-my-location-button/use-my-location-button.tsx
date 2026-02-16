@@ -40,7 +40,7 @@ export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
 
   return (
     <Button
-      id="search-modal-use-location-button"
+      id="sw-search-modal-use-location-button"
       variant="link"
       size="sm"
       onClick={handleClick}
