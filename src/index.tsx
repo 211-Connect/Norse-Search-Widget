@@ -94,10 +94,16 @@ class SearchWidgetIndex {
 
   unmount() {
     if (this.container) {
-      this.container.innerHTML = "";
+      render(null, this.container);
     }
     this.container = null;
+    this.searchCmsConfig = null;
   }
+}
+
+interface SearchWidgetAPI {
+  instance: SearchWidgetIndex | null;
+  updateLocale: (locale: string) => Promise<void>;
 }
 
 // Auto-initialize widget on DOM ready
@@ -112,6 +118,51 @@ if (typeof window !== "undefined") {
       if (tenantId && domain) {
         const widget = new SearchWidgetIndex({ tenantId, domain, locale });
         widget.mount(container);
+
+        const customWindow = window as unknown as Window &
+          typeof globalThis & { searchWidget: SearchWidgetAPI };
+
+        customWindow.searchWidget = {
+          instance: widget,
+          updateLocale: async (newLocale: string) => {
+            if (!customWindow.searchWidget) {
+              console.error("SearchWidget API is not initialized");
+              return;
+            }
+
+            if (customWindow.searchWidget?.instance) {
+              const currentInstance = customWindow.searchWidget.instance;
+              const container = document.getElementById("search-widget");
+
+              if (!container) {
+                console.error("Search widget container not found");
+                return;
+              }
+
+              const tenantId = container.getAttribute("tid");
+              const domain = container.getAttribute("d");
+
+              if (!tenantId || !domain) {
+                console.error(
+                  "Search widget requires both 'tid' (tenant ID) and 'd' (domain) attributes",
+                );
+                return;
+              }
+
+              currentInstance.unmount();
+              container.setAttribute("l", newLocale);
+
+              const newWidget = new SearchWidgetIndex({
+                tenantId,
+                domain,
+                locale: newLocale,
+              });
+              await newWidget.mount(container);
+
+              customWindow.searchWidget.instance = newWidget;
+            }
+          },
+        } as SearchWidgetAPI;
       } else {
         console.error(
           "Search widget requires both 'tid' (tenant ID) and 'd' (domain) attributes",

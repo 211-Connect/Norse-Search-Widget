@@ -46,6 +46,18 @@ The simplest way to use the widget is with automatic initialization:
 
 The widget will automatically detect the `tid` (tenant ID), `d` (domain), and `l` (locale) attributes and initialize itself. The widget will fetch the tenant configuration from the specified domain before rendering. The locale defaults to "en" if not specified.
 
+### Changing Locale Dynamically
+
+The widget fetches locale-specific configuration from the CMS when it mounts. To update the locale, the widget needs to be unmounted and remounted with the new locale setting.
+
+A convenient method is exposed on `window.searchWidget` that handles this automatically:
+
+```javascript
+// Update the widget to Spanish
+// This will unmount the current instance and remount with Spanish locale
+window.searchWidget.updateLocale("es");
+```
+
 ### Customizing Styles
 
 The widget uses CSS variables for theming and does not use Shadow DOM, making it easy to customize with your own CSS:
