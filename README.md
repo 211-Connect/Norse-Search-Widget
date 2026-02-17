@@ -34,8 +34,10 @@ The simplest way to use the widget is with automatic initialization:
     <div
       id="search-widget"
       tid="your-tenant-id"
-      d="https://your-api-domain.com"
+      d="https://your-domain.com"
       l="en"
+      st="_blank"
+      ml="Search for resources at our partner, 211"
     ></div>
 
     <!-- Load the widget script - it will auto-initialize -->
@@ -44,7 +46,15 @@ The simplest way to use the widget is with automatic initialization:
 </html>
 ```
 
-The widget will automatically detect the `tid` (tenant ID), `d` (domain), and `l` (locale) attributes and initialize itself. The widget will fetch the tenant configuration from the specified domain before rendering. The locale defaults to "en" if not specified.
+The widget will automatically detect the following attributes:
+
+- `tid` (required) - Tenant ID
+- `d` (required) - Domain
+- `l` (optional) - Locale (defaults to "en")
+- `st` (optional) - Search target (e.g., "\_blank", "\_self", "\_parent", "\_top"; defaults to "\_blank")
+- `ml` (optional) - Modal label text to display above search inputs (e.g., "Search for resources at our partner, 211")
+
+The widget will fetch the tenant configuration from the specified domain before rendering. The locale defaults to "en" if not specified.
 
 ### Changing Locale Dynamically
 

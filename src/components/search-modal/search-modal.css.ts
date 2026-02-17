@@ -71,3 +71,9 @@ export const locationRow = style({
   gap: vars.spacing.sm,
   width: "100%",
 });
+
+export const modalLabel = style({
+  fontSize: "0.75rem",
+  color: "#374151",
+  textAlign: "center",
+});

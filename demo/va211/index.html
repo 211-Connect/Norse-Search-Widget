@@ -69,6 +69,8 @@
             tid="06f86a2b-c060-4374-8aca-3d70b280cb24"
             d="https://search.211virginia.org"
             l="en"
+            st="_blank"
+            ml="Search for resources at our partner, 211 Virginia"
           ></div>
         </div>
 
@@ -87,6 +89,8 @@
       tid="06f86a2b-c060-4374-8aca-3d70b280cb24"
       d="https://search.211virginia.org"
       l="en"
+      st="_blank"
+      ml="Search for resources at our partner, 211 Virginia"
     &gt;&lt;/div&gt;
 
     &lt;!-- 3. Load the widget script at the end of &lt;body&gt; --&gt;
@@ -108,12 +112,21 @@
               for your organization (fetches config from Payload CMS)
             </li>
             <li>
-              <code>d</code> - <strong>Domain</strong>: API domain for your 211
+              <code>d</code> - <strong>Domain</strong>: Domain for your 211
               service
             </li>
             <li>
               <code>l</code> - <strong>Locale</strong>: Language code (en, es,
               etc.) - defaults to "en"
+            </li>
+            <li>
+              <code>st</code> - <strong>Search Target</strong>: Where to open
+              search results (_blank, _self, etc.) - defaults to "_blank"
+            </li>
+            <li>
+              <code>ml</code> - <strong>Modal Label</strong>: Optional
+              informational text displayed above search inputs (e.g., "Search
+              for resources at our partner, 211")
             </li>
           </ul>
         </div>

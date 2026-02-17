@@ -78,6 +78,8 @@ class SearchWidgetIndex {
             tenantId: this.searchWidgetConfig.tenantId,
             domain: this.searchWidgetConfig.domain,
             locale: this.searchWidgetConfig.locale,
+            searchTarget: this.searchWidgetConfig.searchTarget,
+            modalLabel: this.searchWidgetConfig.modalLabel,
           },
           children: h(SearchWidget, {}),
         }),
@@ -114,9 +116,17 @@ if (typeof window !== "undefined") {
       const tenantId = container.getAttribute("tid");
       const domain = container.getAttribute("d");
       const locale = container.getAttribute("l") || "en";
+      const searchTarget = container.getAttribute("st") || undefined;
+      const modalLabel = container.getAttribute("ml") || undefined;
 
       if (tenantId && domain) {
-        const widget = new SearchWidgetIndex({ tenantId, domain, locale });
+        const widget = new SearchWidgetIndex({
+          tenantId,
+          domain,
+          locale,
+          searchTarget,
+          modalLabel,
+        });
         widget.mount(container);
 
         const customWindow = window as unknown as Window &
@@ -141,6 +151,8 @@ if (typeof window !== "undefined") {
 
               const tenantId = container.getAttribute("tid");
               const domain = container.getAttribute("d");
+              const searchTarget = container.getAttribute("st") || undefined;
+              const modalLabel = container.getAttribute("ml") || undefined;
 
               if (!tenantId || !domain) {
                 console.error(
@@ -156,6 +168,8 @@ if (typeof window !== "undefined") {
                 tenantId,
                 domain,
                 locale: newLocale,
+                searchTarget,
+                modalLabel,
               });
               await newWidget.mount(container);
 

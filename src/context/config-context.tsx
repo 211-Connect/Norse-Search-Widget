@@ -7,6 +7,8 @@ export type ConfigContextValue = {
   tenantId: string;
   domain: string;
   locale: string;
+  searchTarget?: string;
+  modalLabel?: string;
 };
 
 export const ConfigContext = createContext<ConfigContextValue | null>(null);
