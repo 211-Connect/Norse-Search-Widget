@@ -9,7 +9,7 @@ interface SearchButtonProps {
 
 export const SearchButton = ({ onClose }: SearchButtonProps) => {
   const config = useCmsConfig();
-  const { locale } = useConfigContext();
+  const { locale, searchTarget } = useConfigContext();
   const otherTexts = getOtherTranslations(locale);
   const {
     queryConfig,
@@ -37,6 +37,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
     }
 
     const localePath = locale ? `/${locale}` : "";
+    const target = searchTarget || "_blank";
 
     if (!queryConfig) {
       queryParams.set("query", queryInputValue);
@@ -44,12 +45,12 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
       queryParams.set("query_type", "text");
       window.open(
         `https://${config.domain}${localePath}?${queryParams.toString()}`,
-        "_blank",
+        target,
       );
     } else if ("href" in queryConfig) {
       window.open(
         `${queryConfig.href}${localePath}?${queryParams.toString()}`,
-        queryConfig.openInNewTab ? "_blank" : "_self",
+        queryConfig.openInNewTab ? "_blank" : target,
       );
     } else {
       queryParams.set("query", queryConfig.query);
@@ -57,7 +58,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
       queryParams.set("query_type", queryConfig.queryType);
       window.open(
         `https://${config.domain}${localePath}/search?${queryParams.toString()}`,
-        "_blank",
+        target,
       );
     }
 

@@ -26,7 +26,7 @@ type SearchModalProps = {
 
 export const SearchModal = ({ onClose }: SearchModalProps) => {
   const config = useCmsConfig();
-  const { locale } = useConfigContext();
+  const { locale, modalLabel } = useConfigContext();
   const [locationError, setLocationError] = useState<string | null>(null);
 
   const fallbackTexts = getTextTranslations(locale);
@@ -63,6 +63,8 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
           </Button>
           <SearchButton onClose={onClose} />
         </div>
+
+        {modalLabel && <p className={styles.modalLabel}>{modalLabel}</p>}
 
         <Input
           value={queryInputValue}

@@ -35,8 +35,11 @@ h1 {
 
 p {
   color: #718096;
-  margin-bottom: 32px;
   font-size: 14px;
+}
+
+.subheader {
+  margin-bottom: 32px;
 }
 
 #search-widget {

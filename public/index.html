@@ -12,7 +12,7 @@
     <div class="container">
       <h1>Search Widget Demo</h1>
 
-      <p>
+      <p class="subheader">
         A standalone, framework-agnostic search widget built with Preact and
         Vite
       </p>
@@ -22,6 +22,8 @@
         tid="b7ba6ff5-4add-4fb8-a437-dcb0ce27542f"
         d="https://search.211virginia.org"
         l="en"
+        st="_blank"
+        ml="Search for resources at our partner, 211"
       ></div>
 
       <div class="config">
@@ -31,8 +33,10 @@
 &lt;div
   id="search-widget"
   tid="{{ tenant_id }}"
-  d="{{ api_domain }}"
+  d="{{ domain }}"
   l="{{ locale }}"
+  st="{{ search_target }}"
+  ml="{{ modal_label }}"
 &gt;&lt;/div&gt;
 
 &lt;script src="./search-widget.umd.js"&gt;&lt;/script&gt;
