@@ -7,6 +7,7 @@ export type ConfigContextValue = {
   tenantId: string;
   domain: string;
   locale: string;
+  widgetId?: string;
   searchTarget?: string;
   modalLabel?: string;
 };

@@ -80,6 +80,7 @@ class SearchWidgetIndex {
             locale: this.searchWidgetConfig.locale,
             searchTarget: this.searchWidgetConfig.searchTarget,
             modalLabel: this.searchWidgetConfig.modalLabel,
+            widgetId: this.searchWidgetConfig.widgetId,
           },
           children: h(SearchWidget, {}),
         }),
@@ -116,6 +117,7 @@ if (typeof window !== "undefined") {
       const tenantId = container.getAttribute("tid");
       const domain = container.getAttribute("d");
       const locale = container.getAttribute("l") || "en";
+      const widgetId = container.getAttribute("wi") || undefined;
       const searchTarget = container.getAttribute("st") || undefined;
       const modalLabel = container.getAttribute("ml") || undefined;
 
@@ -124,6 +126,7 @@ if (typeof window !== "undefined") {
           tenantId,
           domain,
           locale,
+          widgetId,
           searchTarget,
           modalLabel,
         });
@@ -170,6 +173,7 @@ if (typeof window !== "undefined") {
                 locale: newLocale,
                 searchTarget,
                 modalLabel,
+                widgetId,
               });
               await newWidget.mount(container);
 

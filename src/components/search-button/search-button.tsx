@@ -9,7 +9,7 @@ interface SearchButtonProps {
 
 export const SearchButton = ({ onClose }: SearchButtonProps) => {
   const config = useCmsConfig();
-  const { locale, searchTarget } = useConfigContext();
+  const { locale, searchTarget, widgetId } = useConfigContext();
   const otherTexts = getOtherTranslations(locale);
   const {
     queryConfig,
@@ -34,6 +34,10 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
     }
     if (distance !== null && locationParam !== "Everywhere") {
       queryParams.set("distance", distance.toString());
+    }
+
+    if (widgetId) {
+      queryParams.set("widgetId", widgetId);
     }
 
     const localePath = locale ? `/${locale}` : "";
