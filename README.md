@@ -36,6 +36,7 @@ The simplest way to use the widget is with automatic initialization:
       tid="your-tenant-id"
       d="https://your-domain.com"
       l="en"
+      wid="your-widget-id"
       st="_blank"
       ml="Search for resources at our partner, 211"
     ></div>
@@ -51,6 +52,7 @@ The widget will automatically detect the following attributes:
 - `tid` (required) - Tenant ID
 - `d` (required) - Domain
 - `l` (optional) - Locale (defaults to "en")
+- `wid` (optional) - Widget ID used for analytics tracking
 - `st` (optional) - Search target (e.g., "\_blank", "\_self", "\_parent", "\_top"; defaults to "\_blank")
 - `ml` (optional) - Modal label text to display above search inputs (e.g., "Search for resources at our partner, 211")
 
