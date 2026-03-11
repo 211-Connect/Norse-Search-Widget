@@ -117,7 +117,7 @@ if (typeof window !== "undefined") {
       const tenantId = container.getAttribute("tid");
       const domain = container.getAttribute("d");
       const locale = container.getAttribute("l") || "en";
-      const widgetId = container.getAttribute("wi") || undefined;
+      const widgetId = container.getAttribute("wid") || undefined;
       const searchTarget = container.getAttribute("st") || undefined;
       const modalLabel = container.getAttribute("ml") || undefined;
 
