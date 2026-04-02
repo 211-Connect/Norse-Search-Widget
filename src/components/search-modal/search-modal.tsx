@@ -40,6 +40,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
     setQueryInputValue,
     setLocationInputValue,
     setLocationCoords,
+    setQueryConfig,
   } = useSearchContext();
 
   useInitializeDistanceFromConfig();
@@ -71,9 +72,15 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
           id="sw-search-modal-query-input"
           autofocus
           size="sm"
-          onInput={setQueryInputValue}
+          onInput={(value) => {
+            setQueryInputValue(value);
+            setQueryConfig(null);
+          }}
           onFocus={() => setFocusedInput("query")}
-          onClear={() => setQueryInputValue("")}
+          onClear={() => {
+            setQueryInputValue("");
+            setQueryConfig(null);
+          }}
           placeholder={
             config?.texts?.queryInputPlaceholder ??
             fallbackTexts?.queryInputPlaceholder

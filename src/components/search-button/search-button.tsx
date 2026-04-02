@@ -2,6 +2,7 @@ import { Button } from "../../ui/button/button";
 import { useSearchContext } from "../../context/search-context";
 import { useCmsConfig, useConfigContext } from "../../context/config-context";
 import { getEverywhereLabel, getOtherTranslations } from "../../locales/utils";
+import { deriveQueryType } from "../../utils";
 
 interface SearchButtonProps {
   onClose: () => void;
@@ -43,28 +44,30 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
     const localePath = locale ? `/${locale}` : "";
     const target = searchTarget || "_blank";
 
-    if (!queryConfig) {
-      queryParams.set("query", queryInputValue);
-      queryParams.set("query_label", queryInputValue);
-      queryParams.set("query_type", "text");
-      window.open(
-        `https://${config.domain}${localePath}?${queryParams.toString()}`,
-        target,
-      );
-    } else if ("href" in queryConfig) {
+    if (queryConfig && "href" in queryConfig && queryConfig.href) {
       window.open(
         `${queryConfig.href}${localePath}?${queryParams.toString()}`,
         queryConfig.openInNewTab ? "_blank" : target,
       );
-    } else {
+    }
+
+    if (queryConfig && "query" in queryConfig) {
       queryParams.set("query", queryConfig.query);
       queryParams.set("query_label", queryConfig.queryLabel);
       queryParams.set("query_type", queryConfig.queryType);
-      window.open(
-        `https://${config.domain}${localePath}/search?${queryParams.toString()}`,
-        target,
+    } else {
+      queryParams.set("query", queryInputValue);
+      queryParams.set("query_label", queryInputValue);
+      queryParams.set(
+        "query_type",
+        deriveQueryType(queryInputValue, config.hybridSemanticSearchEnabled),
       );
     }
+
+    window.open(
+      `https://${config.domain}${localePath}/search?${queryParams.toString()}`,
+      target,
+    );
 
     onClose();
   };
