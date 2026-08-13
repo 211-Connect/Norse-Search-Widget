@@ -81,6 +81,7 @@ class SearchWidgetIndex {
             searchTarget: this.searchWidgetConfig.searchTarget,
             modalLabel: this.searchWidgetConfig.modalLabel,
             widgetId: this.searchWidgetConfig.widgetId,
+            styleImportant: this.searchWidgetConfig.styleImportant,
           },
           children: h(SearchWidget, {}),
         }),
@@ -120,6 +121,7 @@ if (typeof window !== "undefined") {
       const widgetId = container.getAttribute("wid") || undefined;
       const searchTarget = container.getAttribute("st") || undefined;
       const modalLabel = container.getAttribute("ml") || undefined;
+      const styleImportant = container.getAttribute("si") === "true";
 
       if (tenantId && domain) {
         const widget = new SearchWidgetIndex({
@@ -129,6 +131,7 @@ if (typeof window !== "undefined") {
           widgetId,
           searchTarget,
           modalLabel,
+          styleImportant,
         });
         widget.mount(container);
 
@@ -174,6 +177,7 @@ if (typeof window !== "undefined") {
                 searchTarget,
                 modalLabel,
                 widgetId,
+                styleImportant,
               });
               await newWidget.mount(container);
 

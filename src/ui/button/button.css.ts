@@ -45,37 +45,41 @@ export const size = styleVariants({
   },
 });
 
-export const variant = styleVariants({
-  primary: {
-    backgroundColor: "var(--widget-primary)",
-    color: vars.color.white,
-    ":hover:not(:disabled)": {
-      opacity: 0.9,
+const getVariant = (styleImportant: boolean) =>
+  styleVariants({
+    primary: {
+      backgroundColor: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+      color: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+      ":hover:not(:disabled)": {
+        opacity: 0.9,
+      },
     },
-  },
-  secondary: {
-    backgroundColor: vars.color.white,
-    color: "var(--widget-primary)",
-    ":hover:not(:disabled)": {
-      backgroundColor: vars.color.gray[100],
+    secondary: {
+      backgroundColor: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+      color: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+      ":hover:not(:disabled)": {
+        backgroundColor: vars.color.gray[100],
+      },
     },
-  },
-  link: {
-    backgroundColor: "transparent",
-    color: "var(--widget-primary)",
-    border: "none",
-    paddingInline: 0,
-    ":hover": {
-      textDecoration: "underline",
+    link: {
+      backgroundColor: `transparent ${styleImportant ? "!important" : ""}`,
+      color: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+      border: "none",
+      paddingInline: 0,
+      ":hover": {
+        textDecoration: "underline",
+      },
     },
-  },
-  "link-white": {
-    backgroundColor: "transparent",
-    color: vars.color.white,
-    border: "none",
-    paddingInline: 0,
-    ":hover": {
-      textDecoration: "underline",
+    "link-white": {
+      backgroundColor: `transparent ${styleImportant ? "!important" : ""}`,
+      color: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+      border: "none",
+      paddingInline: 0,
+      ":hover": {
+        textDecoration: "underline",
+      },
     },
-  },
-});
+  });
+
+export const defaultVariant = getVariant(false);
+export const importantVariant = getVariant(true);

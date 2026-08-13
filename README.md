@@ -39,6 +39,7 @@ The simplest way to use the widget is with automatic initialization:
       wid="your-widget-id"
       st="_blank"
       ml="Search for resources at our partner, 211"
+      si="false"
     ></div>
 
     <!-- Load the widget script - it will auto-initialize -->
@@ -55,6 +56,7 @@ The widget will automatically detect the following attributes:
 - `wid` (optional) - Widget ID used for analytics tracking
 - `st` (optional) - Search target (e.g., "\_blank", "\_self", "\_parent", "\_top"; defaults to "\_blank")
 - `ml` (optional) - Modal label text to display above search inputs (e.g., "Search for resources at our partner, 211")
+- `si` (optional) - Style important flag ("true" or "false"; defaults to "false"). When set to "true", adds `!important` to widget styles to override conflicting styles from the host website. **Not recommended** unless you experience style conflicts.
 
 The widget will fetch the tenant configuration from the specified domain before rendering. The locale defaults to "en" if not specified.
 

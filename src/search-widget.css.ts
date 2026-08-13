@@ -15,4 +15,5 @@ export const title = style({
   fontWeight: vars.fontWeight.medium,
   lineHeight: vars.lineHeight.xl,
   color: vars.color.white,
+  marginBottom: 0,
 });

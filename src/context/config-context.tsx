@@ -10,6 +10,7 @@ export type ConfigContextValue = {
   widgetId?: string;
   searchTarget?: string;
   modalLabel?: string;
+  styleImportant: boolean;
 };
 
 export const ConfigContext = createContext<ConfigContextValue | null>(null);

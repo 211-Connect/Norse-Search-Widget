@@ -1,6 +1,7 @@
-import * as styles from "./button.css";
-import { IconProps } from "../../icons";
 import { ComponentChildren, ComponentType } from "preact";
+import { IconProps } from "../../icons";
+import { useConfigContext } from "../../context/config-context";
+import * as styles from "./button.css";
 
 type ButtonProps = {
   onClick?: () => void;
@@ -25,6 +26,10 @@ export const Button = ({
   disabled,
   id,
 }: ButtonProps) => {
+  const { styleImportant } = useConfigContext();
+  const variantStyles = styleImportant
+    ? styles.importantVariant
+    : styles.defaultVariant;
   const iconColor =
     variant === "secondary" || variant === "link"
       ? "var(--widget-primary)"
@@ -34,7 +39,7 @@ export const Button = ({
     <button
       id={id}
       onClick={onClick}
-      className={`${styles.base} ${styles.size[size]} ${styles.variant[variant]} ${className}`}
+      className={`${styles.base} ${styles.size[size]} ${variantStyles[variant]} ${className}`}
       disabled={disabled}
     >
       {Icon && iconPosition === "left" && (

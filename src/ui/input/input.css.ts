@@ -14,19 +14,23 @@ export const iconWrapper = style({
   alignItems: "center",
 });
 
-export const input = style({
-  width: "100%",
-  backgroundColor: vars.color.white,
-  color: vars.color.text,
-  cursor: "pointer",
-  border: `1px solid ${vars.color.gray[300]}`,
-  borderRadius: "var(--widget-radius)",
-  outline: "none",
-  fontWeight: vars.fontWeight.normal,
-  ":focus": {
-    borderColor: "var(--widget-primary)",
-  },
-});
+const getInput = (styleImportant: boolean) =>
+  style({
+    width: "100%",
+    backgroundColor: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+    color: `${vars.color.text} ${styleImportant ? "!important" : ""}`,
+    cursor: "pointer",
+    border: `1px solid ${vars.color.gray[300]}`,
+    borderRadius: "var(--widget-radius)",
+    outline: "none",
+    fontWeight: vars.fontWeight.normal,
+    ":focus": {
+      borderColor: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+    },
+  });
+
+export const inputDefault = getInput(false);
+export const inputImportant = getInput(true);
 
 export const inputSize = styleVariants({
   sm: {
@@ -47,7 +51,7 @@ export const inputSize = styleVariants({
 });
 
 export const inputWithIcon = style({
-  paddingLeft: "2.5rem",
+  paddingLeft: "2.5rem !important",
 });
 
 export const inputWithoutIcon = style({});
@@ -61,7 +65,8 @@ export const clearButton = style({
   right: vars.spacing.sm,
   top: "50%",
   transform: "translateY(-50%)",
-  background: "none",
+  background: "none !important",
+  backgroundColor: "transparent !important",
   border: "none",
   cursor: "pointer",
   padding: vars.spacing["2xs"],

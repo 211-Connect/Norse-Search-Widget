@@ -5,4 +5,5 @@ export type SearchWidgetConfig = {
   widgetId?: string;
   searchTarget?: string;
   modalLabel?: string;
+  styleImportant: boolean;
 };

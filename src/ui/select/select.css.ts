@@ -6,28 +6,32 @@ export const selectContainer = style({
   width: "100%",
 });
 
-export const select = style({
-  width: "100%",
-  backgroundColor: vars.color.white,
-  color: vars.color.text,
-  cursor: "pointer",
-  border: `1px solid ${vars.color.gray[300]}`,
-  borderRadius: "var(--widget-radius)",
-  outline: "none",
-  fontWeight: vars.fontWeight.normal,
-  textAlign: "left",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: vars.spacing.xs,
-  ":focus": {
-    borderColor: "var(--widget-primary)",
-  },
-  ":disabled": {
-    opacity: 0.5,
-    cursor: "not-allowed",
-  },
-});
+const getSelect = (styleImportant: boolean) =>
+  style({
+    width: "100%",
+    backgroundColor: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+    color: `${vars.color.text} ${styleImportant ? "!important" : ""}`,
+    cursor: "pointer",
+    border: `1px solid ${vars.color.gray[300]}`,
+    borderRadius: "var(--widget-radius)",
+    outline: "none",
+    fontWeight: vars.fontWeight.normal,
+    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: vars.spacing.xs,
+    ":focus": {
+      borderColor: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+    },
+    ":disabled": {
+      opacity: 0.5,
+      cursor: "not-allowed",
+    },
+  });
+
+export const defaultSelect = getSelect(false);
+export const importantSelect = getSelect(true);
 
 export const selectLabel = style({
   flex: 1,
@@ -44,24 +48,32 @@ export const selectIconOpen = style({
   transform: "rotate(180deg)",
 });
 
-export const selectOpen = style({
-  borderColor: "var(--widget-primary)",
-});
+const getSelectOpen = (styleImportant: boolean) =>
+  style({
+    borderColor: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+  });
 
-export const dropdown = style({
-  position: "absolute",
-  top: "calc(100% + 4px)",
-  left: 0,
-  right: 0,
-  backgroundColor: vars.color.white,
-  border: `1px solid ${vars.color.gray[300]}`,
-  borderRadius: "var(--widget-radius)",
-  boxShadow:
-    "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-  zIndex: 1000,
-  maxHeight: "240px",
-  overflowY: "auto",
-});
+export const defaultSelectOpen = getSelectOpen(false);
+export const importantSelectOpen = getSelectOpen(true);
+
+const getDropdown = (styleImportant: boolean) =>
+  style({
+    position: "absolute",
+    top: "calc(100% + 4px)",
+    left: 0,
+    right: 0,
+    backgroundColor: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+    border: `1px solid ${vars.color.gray[300]}`,
+    borderRadius: "var(--widget-radius)",
+    boxShadow:
+      "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    zIndex: 1000,
+    maxHeight: "240px",
+    overflowY: "auto",
+  });
+
+export const defaultDropdown = getDropdown(false);
+export const importantDropdown = getDropdown(true);
 
 export const option = style({
   padding: `${vars.spacing.xs} ${vars.spacing.sm}`,
@@ -72,14 +84,18 @@ export const option = style({
   },
 });
 
-export const optionSelected = style({
-  backgroundColor: "var(--widget-primary)",
-  color: vars.color.white,
-  ":hover": {
-    backgroundColor: "var(--widget-primary)",
-    opacity: 0.9,
-  },
-});
+const getOptionSelected = (styleImportant: boolean) =>
+  style({
+    backgroundColor: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+    color: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
+    ":hover": {
+      backgroundColor: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
+      opacity: 0.9,
+    },
+  });
+
+export const defaultOptionSelected = getOptionSelected(false);
+export const importantOptionSelected = getOptionSelected(true);
 
 export const selectSize = styleVariants({
   sm: {

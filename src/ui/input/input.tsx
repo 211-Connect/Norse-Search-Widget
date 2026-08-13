@@ -35,10 +35,13 @@ export const Input = ({
   Icon,
   size = "md",
 }: InputProps) => {
-  const { locale } = useConfigContext();
+  const { locale, styleImportant } = useConfigContext();
   const otherTexts = getOtherTranslations(locale);
   const paddingClass = Icon ? styles.inputWithIcon : styles.inputWithoutIcon;
   const paddingRightClass = onClear && value ? styles.inputWithClear : "";
+  const inputClass = styleImportant
+    ? styles.inputImportant
+    : styles.inputDefault;
 
   return (
     <div className={styles.container}>
@@ -62,7 +65,7 @@ export const Input = ({
         onBlur={onBlur}
         autoFocus={autofocus}
         readOnly={readOnly}
-        className={`${styles.input} ${styles.inputSize[size]} ${paddingClass} ${paddingRightClass}`}
+        className={`${inputClass} ${styles.inputSize[size]} ${paddingClass} ${paddingRightClass}`}
       />
 
       {onClear && value && (

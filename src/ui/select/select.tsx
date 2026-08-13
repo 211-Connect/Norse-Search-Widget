@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import * as styles from "./select.css";
 import { ChevronDownIcon } from "../../icons";
+import { useConfigContext } from "../../context/config-context";
 
 interface SelectProps {
   id?: string;
@@ -21,6 +22,7 @@ export const Select = ({
   className = "",
   disabled = false,
 }: SelectProps) => {
+  const { styleImportant } = useConfigContext();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -67,8 +69,12 @@ export const Select = ({
       <button
         type="button"
         onClick={handleToggle}
-        className={`${styles.select} ${styles.selectSize[size]} ${
-          isOpen ? styles.selectOpen : ""
+        className={`${styleImportant ? styles.importantSelect : styles.defaultSelect} ${styles.selectSize[size]} ${
+          isOpen
+            ? styleImportant
+              ? styles.importantSelectOpen
+              : styles.defaultSelectOpen
+            : ""
         }`}
         disabled={disabled}
       >
@@ -82,13 +88,19 @@ export const Select = ({
       </button>
 
       {isOpen && (
-        <div className={`${styles.dropdown} ${styles.dropdownSize[size]}`}>
+        <div
+          className={`${styleImportant ? styles.importantDropdown : styles.defaultDropdown} ${styles.dropdownSize[size]}`}
+        >
           {options.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option.value)}
               className={`${styles.option} ${
-                option.value === value ? styles.optionSelected : ""
+                option.value === value
+                  ? styleImportant
+                    ? styles.importantOptionSelected
+                    : styles.defaultOptionSelected
+                  : ""
               }`}
             >
               {option.label}

@@ -33,6 +33,7 @@ export const groupTitle = style({
   fontSize: vars.fontSize.xs,
   fontWeight: vars.fontWeight.medium,
   color: vars.color.black,
+  marginBottom: 0,
 });
 
 export const itemsList = style({
@@ -104,7 +105,7 @@ export const badge = style({
   color: "var(--widget-primary)",
   border: `1px solid ${vars.color.gray[300]}`,
   borderRadius: "var(--widget-radius)",
-  flexShrink: 0,
+  lineHeight: vars.lineHeight.sm,
 });
 
 export const placeholder = style({
