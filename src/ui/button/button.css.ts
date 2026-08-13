@@ -58,7 +58,7 @@ const getVariant = (styleImportant: boolean) =>
       backgroundColor: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
       color: `var(--widget-primary) ${styleImportant ? "!important" : ""}`,
       ":hover:not(:disabled)": {
-        backgroundColor: vars.color.gray[100],
+        backgroundColor: `${vars.color.gray[100]} ${styleImportant ? "!important" : ""}`,
       },
     },
     link: {

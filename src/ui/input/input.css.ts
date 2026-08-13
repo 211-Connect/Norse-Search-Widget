@@ -20,8 +20,8 @@ const getInput = (styleImportant: boolean) =>
     backgroundColor: `${vars.color.white} ${styleImportant ? "!important" : ""}`,
     color: `${vars.color.text} ${styleImportant ? "!important" : ""}`,
     cursor: "pointer",
-    border: `1px solid ${vars.color.gray[300]}`,
-    borderRadius: "var(--widget-radius)",
+    border: `1px solid ${vars.color.gray[300]} ${styleImportant ? "!important" : ""}`,
+    borderRadius: `var(--widget-radius) ${styleImportant ? "!important" : ""}`,
     outline: "none",
     fontWeight: vars.fontWeight.normal,
     ":focus": {
