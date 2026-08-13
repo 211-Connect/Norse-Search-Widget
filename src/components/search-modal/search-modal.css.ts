@@ -24,7 +24,7 @@ const slideUp = keyframes({
 export const overlay = style({
   position: "fixed",
   inset: 0,
-  zIndex: 50,
+  zIndex: 200,
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "center",
