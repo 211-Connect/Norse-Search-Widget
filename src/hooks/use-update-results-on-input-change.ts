@@ -4,6 +4,7 @@ import { useCmsConfig } from "../context/config-context";
 import { SearchIcon } from "../icons";
 import { SearchResults } from "../types/search-results";
 import { SearchCmsConfig } from "src/types/search-cms-config";
+import { capSuggestionGroups } from "../utils";
 
 export const useUpdateResultsOnInputChange = () => {
   const config = useCmsConfig();
@@ -107,6 +108,9 @@ export const useUpdateResultsOnInputChange = () => {
       });
     }
 
-    setResults(newResults);
+    setResults({
+      ...newResults,
+      groups: capSuggestionGroups(newResults.groups || []),
+    });
   }, [queryInputValue, focusedInput]);
 };

@@ -11,5 +11,6 @@ export type QueryConfig = {
       query: string;
       queryLabel: string;
       queryType: "suggestion" | "topic" | "taxonomy" | "text";
+      organizationId?: string;
     }
 );

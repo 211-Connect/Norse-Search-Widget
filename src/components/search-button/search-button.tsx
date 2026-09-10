@@ -52,9 +52,16 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
     }
 
     if (queryConfig && "query" in queryConfig) {
-      queryParams.set("query", queryConfig.query);
+      if (queryConfig.query) {
+        queryParams.set("query", queryConfig.query);
+      }
+
       queryParams.set("query_label", queryConfig.queryLabel);
       queryParams.set("query_type", queryConfig.queryType);
+
+      if (queryConfig.organizationId) {
+        queryParams.set("organization_id", queryConfig.organizationId);
+      }
     } else {
       queryParams.set("query", queryInputValue);
       queryParams.set("query_label", queryInputValue);

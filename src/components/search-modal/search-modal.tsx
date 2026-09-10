@@ -10,7 +10,7 @@ import { ChevronLeftIcon, SearchIcon, PlaceIcon } from "../../icons";
 import { useSearchContext } from "../../context/search-context";
 import {
   useEmptyResultsOnBlurInput,
-  useFetchTaxonomiesOnInputChange,
+  useFetchSuggestionsOnInputChange,
   useUpdateResultsOnInputChange,
   useFetchLocationsOnInputChange,
   useInitializeDistanceFromConfig,
@@ -46,7 +46,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
   useInitializeDistanceFromConfig();
   useEmptyResultsOnBlurInput();
   useUpdateResultsOnInputChange();
-  useFetchTaxonomiesOnInputChange();
+  useFetchSuggestionsOnInputChange();
   useFetchLocationsOnInputChange();
 
   return (
