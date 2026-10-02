@@ -1,8 +1,6 @@
 import { SearchWidgetConfig } from "src/types/search-widget-config";
 import { API_URL } from "../env";
 
-const API_VERSION = "2";
-
 export type SuggestionTaxonomyItem = {
   id: string;
   code: string;
@@ -36,7 +34,7 @@ export const fetchSuggestions = async ({
     headers: {
       "accept-language": locale,
       "x-tenant-id": tenantId,
-      "x-api-version": API_VERSION,
+      "x-api-version": "1",
     },
   });
 
