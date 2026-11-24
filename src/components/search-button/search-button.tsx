@@ -17,6 +17,7 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
     queryInputValue,
     locationInputValue,
     locationCoords,
+    locationRegionId,
     distance,
   } = useSearchContext();
 
@@ -49,6 +50,13 @@ export const SearchButton = ({ onClose }: SearchButtonProps) => {
         `${queryConfig.href}${localePath}?${queryParams.toString()}`,
         queryConfig.openInNewTab ? "_blank" : target,
       );
+    }
+
+    // An area pick searches the area's shape on Norse. `coords` stay as the
+    // distance-sort origin; a radius doesn't apply to an area.
+    if (locationRegionId && locationParam !== "Everywhere") {
+      queryParams.set("region", locationRegionId);
+      queryParams.delete("distance");
     }
 
     if (queryConfig && "query" in queryConfig) {

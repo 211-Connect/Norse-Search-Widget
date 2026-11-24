@@ -40,6 +40,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
     setQueryInputValue,
     setLocationInputValue,
     setLocationCoords,
+    setLocationRegionId,
     setQueryConfig,
   } = useSearchContext();
 
@@ -97,6 +98,7 @@ export const SearchModal = ({ onClose }: SearchModalProps) => {
           onClear={() => {
             setLocationInputValue("");
             setLocationCoords(null);
+            setLocationRegionId(null);
           }}
           placeholder={
             config.texts?.locationInputPlaceholder ??

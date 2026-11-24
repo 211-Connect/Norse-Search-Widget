@@ -18,6 +18,7 @@ export const useFetchLocationsOnInputChange = () => {
     locationInputValue,
     setLocationInputValue,
     setLocationCoords,
+    setLocationRegionId,
   } = useSearchContext();
 
   // ref is necessary to access the latest value of focusedInput inside the debounced function
@@ -40,6 +41,7 @@ export const useFetchLocationsOnInputChange = () => {
       onClick: () => {
         setLocationInputValue(everywhereLabel);
         setLocationCoords(null);
+        setLocationRegionId(null);
         setFocusedInput(null);
       },
     };
@@ -86,6 +88,7 @@ export const useFetchLocationsOnInputChange = () => {
                 onClick: () => {
                   setLocationInputValue(location.placeName);
                   setLocationCoords(location.coordinates);
+                  setLocationRegionId(location.regionId);
                   setFocusedInput(null);
                 },
               }),

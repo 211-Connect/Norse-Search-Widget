@@ -12,7 +12,14 @@ import * as styles from "./distance-select.css";
 export const DistanceSelect = () => {
   const config = useCmsConfig();
   const configContext = useConfigContext();
-  const { distance, setDistance, locationCoords } = useSearchContext();
+  const { distance, setDistance, locationCoords, locationRegionId } =
+    useSearchContext();
+
+  // An area (state, county, city, ZIP) is searched as its shape, so there is
+  // no radius to pick. Norse hides its own select the same way.
+  if (locationRegionId) {
+    return null;
+  }
 
   return (
     <div className={styles.radiusGroup}>
