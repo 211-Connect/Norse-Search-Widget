@@ -92,6 +92,20 @@ The widget uses CSS variables for theming and does not use Shadow DOM, making it
 </style>
 ```
 
+## Search link
+
+Search opens `https://<tenant domain>/<locale>/search` with the query, `location`
+and, when a place was picked, its `coords`.
+
+- **Area** (a state, county, city or ZIP that Norse knows the shape of): the
+  geocoder hit carries a `region_id`, sent as `region` (e.g. `county:53033`).
+  Norse lists the resources in that area; the radius select is hidden and no
+  `distance` is sent. `coords` stay as the origin for sorting by distance.
+- **Point** (an address, "Use my location", or a place with no `region_id`):
+  `coords` plus the picked `distance`, a radius search as before.
+
+See `docs/area-search.md` in Norse for how Norse searches an area.
+
 ## Development
 
 ### Prerequisites

@@ -13,8 +13,12 @@ type UseMyLocationButtonProps = {
 export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
   const { locale } = useConfigContext();
   const otherTexts = getOtherTranslations(locale);
-  const { setLocationInputValue, setLocationCoords, setFocusedInput } =
-    useSearchContext();
+  const {
+    setLocationInputValue,
+    setLocationCoords,
+    setLocationRegionId,
+    setFocusedInput,
+  } = useSearchContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
@@ -25,6 +29,8 @@ export const UseMyLocationButton = ({ onError }: UseMyLocationButtonProps) => {
       const location = await getUserLocation(locale);
       setLocationInputValue(location.placeName);
       setLocationCoords(location.coordinates);
+      // The visitor's own position is a point: search a radius around it.
+      setLocationRegionId(null);
       setFocusedInput(null);
     } catch (error) {
       console.error("Failed to get user location:", error);
